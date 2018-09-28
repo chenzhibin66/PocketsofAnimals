@@ -195,7 +195,7 @@
                 android:text="我的"
                 android:textColor="#9A9A9A"
                 android:textSize="12sp" />
-        </RelativeLayout>
+        </RelativeLayout>d
     </LinearLayout>
 
 </RelativeLayout>
