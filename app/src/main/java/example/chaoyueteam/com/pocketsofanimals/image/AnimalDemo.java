@@ -15,10 +15,10 @@ public class AnimalDemo {
 //		String result = getAnimalResult("G:/animal.jpg", "24.509012e6b7fd242cff7557c13dc436de.2592000.1512873097.282335-10131029");
 //		System.out.println(result);
         //返回java对象
-        Animal plant = getAnimalBean("C:/Users/MSI-PC/Desktop/classdesign/老虎.jpg", "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873");
+        Animal plant = getAnimalBean("C:/Users/MSI-PC/Desktop/classdesign/狮子.jpg", "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873");
         System.out.println(plant.getResult().get(0).getName());
         System.out.println(plant.getResult().get(0).getBaike_info());
-        System.out.println(plant.getResult().get(0).getBaike_info().substring(plant.getResult().get(0).getBaike_info().indexOf("description")).replace("description","介绍"));
+        System.out.println(plant.getResult().get(0).getBaike_info().substring(plant.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
     }
     /**
      * 动物识别Demo
