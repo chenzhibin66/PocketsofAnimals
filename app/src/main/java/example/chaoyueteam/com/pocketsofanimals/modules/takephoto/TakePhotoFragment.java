@@ -8,7 +8,8 @@ import example.chaoyueteam.com.pocketsofanimals.base.BaseFragment;
 public class TakePhotoFragment extends BaseFragment {
     @Override
     public int getLayoutResId() {
-         return R.layout.fragment_take_photo;
+
+        return R.layout.fragment_take_photo;
     }
 
     @Override
