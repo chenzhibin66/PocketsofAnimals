@@ -19,7 +19,10 @@ android {
 }
 
 dependencies {
+<<<<<<< HEAD
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+=======
+>>>>>>> b345ad8d7dc5af81e49d95a32ca81a20ae010863
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:design:28.0.0'
@@ -27,6 +30,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+<<<<<<< HEAD
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.0.+'
@@ -35,4 +39,11 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.jpardogo.flabbylistview:library:1.0.0'
+=======
+    implementation files('libs/aip-java-sdk-4.6.0.jar')
+    implementation files('libs/fastjson-1.2.47.jar')
+    implementation files('libs/json-20160810.jar')
+    implementation files('libs/log4j-1.2.17.jar')
+    implementation files('libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar')
+>>>>>>> b345ad8d7dc5af81e49d95a32ca81a20ae010863
 }

@@ -27,6 +27,10 @@ public class TakePhotoFragment extends BaseFragment implements View.OnClickListe
 
     @Override
     public int getLayoutResId() {
+<<<<<<< HEAD
+=======
+
+>>>>>>> b345ad8d7dc5af81e49d95a32ca81a20ae010863
         return R.layout.fragment_take_photo;
     }
 

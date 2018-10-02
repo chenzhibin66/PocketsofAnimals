@@ -7,6 +7,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
+<<<<<<< HEAD
+=======
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+>>>>>>> b345ad8d7dc5af81e49d95a32ca81a20ae010863
 
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseActivity;
@@ -27,13 +36,12 @@ public class MainActivity extends BaseActivity {
 
     private FragmentTransaction transaction;
 
-/*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
 
-    }*/
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(getLayoutId());
+//    }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -96,5 +104,8 @@ public class MainActivity extends BaseActivity {
                 .commit();
         lastfragment = index;
     }
+
+
+
 
 }
