@@ -1,5 +1,7 @@
 package example.chaoyueteam.com.pocketsofanimals.image;
 
+
+
 import com.alibaba.fastjson.JSON;
 
 import java.net.URLEncoder;
@@ -17,7 +19,6 @@ public class AnimalDemo {
         //返回java对象
         Animal plant = getAnimalBean("C:/Users/MSI-PC/Desktop/classdesign/狮子.jpg", "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873");
         System.out.println(plant.getResult().get(0).getName());
-        System.out.println(plant.getResult().get(0).getBaike_info());
         System.out.println(plant.getResult().get(0).getBaike_info().substring(plant.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
     }
     /**
