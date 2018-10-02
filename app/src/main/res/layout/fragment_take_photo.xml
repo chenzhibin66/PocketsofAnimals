@@ -36,7 +36,6 @@
             android:layout_centerInParent="true"
             android:padding="15dp"/>
     </RelativeLayout>
-<<<<<<< HEAD
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,10 +56,5 @@
             android:textSize="20sp"
             android:textColor="@android:color/white"
             android:padding="15dp" />
-
     </RelativeLayout>
-
-
-=======
->>>>>>> b345ad8d7dc5af81e49d95a32ca81a20ae010863
 </LinearLayout>
