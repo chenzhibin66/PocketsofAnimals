@@ -6,15 +6,17 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
+
+
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import cn.bmob.v3.Bmob;
+
 
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseActivity;
@@ -36,12 +38,12 @@ public class MainActivity extends BaseActivity {
     private FragmentTransaction transaction;
 
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(getLayoutId());
-//    }
-
+/*    @Override
+   protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
+   }
+*/
     @Override
     protected void initView(Bundle savedInstanceState) {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

@@ -5,6 +5,17 @@ import java.util.List;
 public class plant {
     private Long log_id;
     private  Long baike_info;
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+
+        return name;
+    }
+
     private List<Result> result;
 
     public void setBaike_info(Long baike_info) {

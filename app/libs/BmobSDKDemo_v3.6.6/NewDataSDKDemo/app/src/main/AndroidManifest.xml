@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="cn.bmob.sdkdemo"
+          android:versionCode="1"
+          android:versionName="1.0.0">
+
+    <!-- 允许联网 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 获取wifi网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <!-- 获取sd卡写的权限，用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 允许读取手机状态 用于创建BmobInstallation -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+
+    <application
+        android:name=".BmobApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".crud.CRUDActivity"/>
+        <activity android:name=".crud.QueryActivity"/>
+        <activity android:name=".crud.QueryStatisticActivity"/>
+        <activity android:name=".crud.QuerySQLActivity"/>
+        <activity android:name=".user.UserActivity"/>
+        <activity android:name=".BatchActionActivity"/>
+        <activity android:name=".location.LocationActivity"/>
+        <activity android:name=".acl.ACLActivity"/>
+        <activity
+            android:name=".relation.WeiboListActivity"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+            android:name=".relation.CommentListActivity"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity android:name=".file.BmobFileActivity"/>
+        <activity android:name=".autoupdate.ActAutoUpdate"/>
+        <activity android:name=".sms.SMSCodeActivity"/>
+
+        <activity android:name=".TestActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        </activity>
+        <!-- Auto Update Start -->
+        <!-- 设置更新渠道，如果没有，则不要添加此行 -->
+        <meta-data
+            android:name="BMOB_CHANNEL"
+            android:value="bmob"/>
+
+        <activity
+            android:name="cn.bmob.v3.update.UpdateDialogActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>
+
+        <!-- 设置BmobAppKey -->
+        <meta-data
+            android:name="Bmob_APP_KEY"
+            android:value="12784168944a56ae41c4575686b7b332"/>
+
+
+
+
+        <!--数据共享-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="cn.bmob.sdkdemo"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

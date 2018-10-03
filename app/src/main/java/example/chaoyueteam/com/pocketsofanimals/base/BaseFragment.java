@@ -23,23 +23,39 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView(savedInstanceState);
+    }
+
+    /**
+     * 初始化UI
+     *
+     * @param state
+     */
     public abstract void initView(Bundle state);
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
-    public FragmentActivity getSupportActivity(){
+    public FragmentActivity getSupportActivity() {
         return super.getActivity();
     }
 
     /**
      * Fragment的隐藏
      */
-    protected void onInvisible(){
+    protected void onInvisible() {
 
     }
+
     /**
      * 初始化recyclerView
      */
-    protected void initRecyclerView(){
+    protected void initRecyclerView() {
 
     }
 }
