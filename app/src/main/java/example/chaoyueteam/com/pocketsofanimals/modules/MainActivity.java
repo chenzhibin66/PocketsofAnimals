@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import cn.bmob.v3.Bmob;
 
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseActivity;
@@ -36,12 +37,12 @@ public class MainActivity extends BaseActivity {
     private FragmentTransaction transaction;
 
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(getLayoutId());
-//    }
-
+/*    @Override
+   protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
+   }
+*/
     @Override
     protected void initView(Bundle savedInstanceState) {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

@@ -30,4 +30,18 @@ dependencies {
     implementation files('libs/json-20160810.jar')
     implementation files('libs/log4j-1.2.17.jar')
     implementation files('libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar')
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'cn.bmob.android:bmob-sdk:3.6.3'
+
+    //bmob-push：Bmob的推送包
+    implementation 'cn.bmob.android:bmob-push:0.8'
+
+    //bmob-im：Bmob的即时通讯包，注意每个版本的im依赖特定版本的bmob-sdk，具体的依赖关系可查看下面注释[2]
+    implementation 'cn.bmob.android:bmob-im:2.1.0@aar'
+
+    //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
+    implementation 'cn.bmob.android:http-legacy:1.0'
+
 }
