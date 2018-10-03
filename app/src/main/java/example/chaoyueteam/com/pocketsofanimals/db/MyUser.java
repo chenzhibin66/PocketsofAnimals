@@ -6,7 +6,7 @@ public class MyUser extends BmobUser {
     private String sex;
     private String nick;
     private String personalityIntroduction;
-    private String personname;
+    private String picture;
 
     public String getSex() {
         return this.sex;
@@ -20,9 +20,7 @@ public class MyUser extends BmobUser {
         return personalityIntroduction;
     }
 
-    public String getPersonname() {
-        return personname;
-    }
+
 
     public void setNick(String nick) {
         this.nick = nick;
@@ -32,8 +30,12 @@ public class MyUser extends BmobUser {
         personalityIntroduction = personalityIntroduction;
     }
 
-    public void setPersonname(String personname) {
-        this.personname = personname;
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public void setSex(String sex) {

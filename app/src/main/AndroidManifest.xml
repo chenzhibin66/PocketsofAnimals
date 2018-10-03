@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:theme">
         <activity
-            android:name=".modules.MainActivity"
+            android:name=".modules.WelcomeActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,9 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".modules.takephoto.ShowAnimalsActivity" />
-        <activity android:name=".modules.takephoto.TakePhotoActivity"></activity>
+        <activity android:name=".modules.takephoto.TakePhotoActivity" />
+        <activity android:name=".modules.MainActivity" />
+        <activity android:name=".modules.LoginActivity" />
+        <activity android:name=".modules.RegisterActivity"></activity>
     </application>
 
 </manifest>

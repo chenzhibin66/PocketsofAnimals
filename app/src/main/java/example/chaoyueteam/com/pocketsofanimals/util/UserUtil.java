@@ -1,6 +1,8 @@
 package example.chaoyueteam.com.pocketsofanimals.util;
 
+import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -8,15 +10,16 @@ import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import example.chaoyueteam.com.pocketsofanimals.db.MyUser;
+import example.chaoyueteam.com.pocketsofanimals.modules.RegisterActivity;
 
 public class UserUtil {
     //注册
-    public void registered(String username,String password,String personName,
+    public void registered(String username,String password,String picture,
                            String sex,String nick,String personalityIntroduction){
         MyUser bu = new MyUser();
         bu.setUsername(username);
         bu.setPassword(password);
-        bu.setPersonname(personName);
+        bu.setPicture(picture);
         bu.setPersonalityIntroduction(personalityIntroduction);
         bu.setNick(nick);
         bu.setSex(sex);
@@ -46,12 +49,12 @@ public class UserUtil {
     }
 
     //更改服务器上个人信息
-    public void updateUserImformation(String personName,String sex,
+    public void updateUserImformation(String picture,String sex,
                                       String nick,String personalityIntroduction) {
         MyUser myUser = new MyUser();
         myUser.setSex(sex);
         myUser.setNick(nick);
-        myUser.setPersonname(personName);
+        myUser.setPicture(picture);
         myUser.setPersonalityIntroduction(personalityIntroduction);
         myUser.update(new UpdateListener() {
             @Override
