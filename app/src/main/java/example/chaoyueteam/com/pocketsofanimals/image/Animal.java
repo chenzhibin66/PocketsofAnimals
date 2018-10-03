@@ -6,15 +6,7 @@ public class Animal {
     private Long log_id;
     private List<Result> result;
     private  List<Baike_info> baike_infos;
-    private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-
-        this.name = name;
     }
 
     public void setBaike_infos(List<Baike_info> baike_infos) {
