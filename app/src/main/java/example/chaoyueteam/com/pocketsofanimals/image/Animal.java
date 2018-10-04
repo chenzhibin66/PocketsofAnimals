@@ -7,6 +7,8 @@ public class Animal {
     private List<Result> result;
     private  List<Baike_info> baike_infos;
 
+    }
+
     public void setBaike_infos(List<Baike_info> baike_infos) {
         this.baike_infos = baike_infos;
     }

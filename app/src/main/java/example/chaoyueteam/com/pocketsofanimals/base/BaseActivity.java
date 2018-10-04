@@ -3,7 +3,13 @@ package example.chaoyueteam.com.pocketsofanimals.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.Window;
+import android.widget.Toast;
+
+import cn.bmob.v3.Bmob;
+import example.chaoyueteam.com.pocketsofanimals.util.UserUtil;
 
 public abstract class BaseActivity extends AppCompatActivity {
     @Override
@@ -12,6 +18,8 @@ public abstract class BaseActivity extends AppCompatActivity {
        /* requestWindowFeature(Window.FEATURE_NO_TITLE);*/
         setContentView(getLayoutId());
         initView(savedInstanceState);
+        //默认初始化
+        Bmob.initialize(this, "e3f7e3dcd335515e9aa1040d7067bace");
     }
 
     protected abstract void initView(Bundle savedInstanceState);
