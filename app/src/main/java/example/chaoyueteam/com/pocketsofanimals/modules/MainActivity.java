@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
 
+import com.baidu.mapapi.SDKInitializer;
+
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseActivity;
 import example.chaoyueteam.com.pocketsofanimals.modules.discover.DiscoverFragment;
@@ -31,14 +33,15 @@ public class MainActivity extends BaseActivity {
     private FragmentTransaction transaction;
 
 
-/*    @Override
-   protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
-   }
-*/
+    /*    @Override
+       protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(getLayoutId());
+       }
+    */
     @Override
     protected void initView(Bundle savedInstanceState) {
+        SDKInitializer.initialize(getApplicationContext());
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         takephotoFragment = new TakePhotoFragment();
@@ -70,8 +73,6 @@ public class MainActivity extends BaseActivity {
                     if (lastfragment != 1) {
                         switchFragment(1);
                         lastfragment = 1;
-                        Intent i = new Intent(MainActivity.this,MapAcitvity.class);
-                        startActivity(i);
                     }
                     return true;
                 case R.id.navigation_discover:
@@ -100,8 +101,6 @@ public class MainActivity extends BaseActivity {
                 .commit();
         lastfragment = index;
     }
-
-
 
 
 }

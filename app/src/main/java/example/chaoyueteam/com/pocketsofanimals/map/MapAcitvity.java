@@ -51,7 +51,7 @@ public class MapAcitvity extends AppCompatActivity {
         //注册监听器，当获取到位置信息时就会回调这个位置监听器
         SDKInitializer.initialize(getApplicationContext());
         //初始化，在setContentView前实现，否则回出错，使地图显示出来
-        setContentView(R.layout.activity_main_map);
+        setContentView(R.layout.fragment_location);
         mapView = (MapView)findViewById(R.id.bmapView);
 
         baiduMap = mapView.getMap();
