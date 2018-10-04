@@ -194,6 +194,7 @@ public class MapAcitvity extends AppCompatActivity {
             } else if (location.getLocType() == BDLocation.TypeNetWorkLocation){
                 currentPosition.append("网络");
             }
+            Toast.makeText(MapAcitvity.this,currentPosition,Toast.LENGTH_SHORT).show();
             positionText.setText(currentPosition);
         }
     }

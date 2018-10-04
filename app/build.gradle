@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "example.chaoyueteam.com.pocketsofanimals"
@@ -16,10 +17,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    sourceSets{
+//        main{
+//            jnilibs.srcDir = ['libs']
+////            jni.srcDirs     //disable automatic ndk-build
+//        }
+//    }
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+        baseline file("lint-baseline.xml")
+    }
+
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:design:28.0.0'
@@ -43,7 +56,7 @@ dependencies {
     implementation files('libs/log4j-1.2.17.jar')
     implementation files('libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar')
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
 
     implementation 'cn.bmob.android:bmob-sdk:3.6.3'
 

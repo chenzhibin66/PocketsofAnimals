@@ -1,5 +1,6 @@
 package example.chaoyueteam.com.pocketsofanimals.modules;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -24,6 +25,7 @@ import example.chaoyueteam.com.pocketsofanimals.modules.discover.DiscoverFragmen
 import example.chaoyueteam.com.pocketsofanimals.modules.location.LocationFragment;
 import example.chaoyueteam.com.pocketsofanimals.modules.me.MeFragment;
 import example.chaoyueteam.com.pocketsofanimals.modules.takephoto.TakePhotoFragment;
+import map.MapAcitvity;
 
 public class MainActivity extends BaseActivity {
     private FragmentTransaction fragmentTransaction;
@@ -77,6 +79,8 @@ public class MainActivity extends BaseActivity {
                     if (lastfragment != 1) {
                         switchFragment(1);
                         lastfragment = 1;
+                        Intent i = new Intent(MainActivity.this,MapAcitvity.class);
+                        startActivity(i);
                     }
                     return true;
                 case R.id.navigation_discover:
