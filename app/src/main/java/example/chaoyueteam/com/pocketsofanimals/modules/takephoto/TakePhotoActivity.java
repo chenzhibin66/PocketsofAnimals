@@ -1,11 +1,13 @@
 package example.chaoyueteam.com.pocketsofanimals.modules.takephoto;
 
+import android.Manifest;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +18,9 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -29,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.theartofdev.edmodo.cropper.CropImageView;
 
