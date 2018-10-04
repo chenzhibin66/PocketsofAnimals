@@ -39,6 +39,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:replace="android:icon"
         android:theme="@style/AppTheme">
+
+
+        <!--填写自己的-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="8Hil3jAmo1xhU2fqjWgxbm4hUG4l2Se2"/>
@@ -51,7 +54,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="map.MapAcitvity"></activity>
+        <activity android:name="example.chaoyueteam.com.pocketsofanimals.map.MapAcitvity"></activity>
         <service android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote">
