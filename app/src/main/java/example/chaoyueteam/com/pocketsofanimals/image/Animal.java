@@ -8,7 +8,6 @@ public class Animal{
     private  List<Baike_info> baike_infos;
     private  String  names;
 
-
     public void setDescription(String description) {
         this.description = description;
     }
