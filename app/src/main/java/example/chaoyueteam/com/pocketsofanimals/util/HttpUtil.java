@@ -1,5 +1,7 @@
 package example.chaoyueteam.com.pocketsofanimals.util;
 
+import android.os.Environment;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -112,8 +114,9 @@ public class HttpUtil { public static String post(String requestUrl, String acce
      * @throws Exception
      */
     public static String postVoice(String requestUrl,String params) throws Exception {
-        String workspace = System.getProperty("user.home");
-        String path = workspace+"/text2audio/";
+//        String workspace = System.getProperty("user.home");
+//        String path = workspace+"/text2audio/";
+        String path = Environment.getExternalStorageDirectory().toString() + "/AndroidMedia/";
         try {
             if (!(new File(path).isDirectory())) {
                 new File(path).mkdir();

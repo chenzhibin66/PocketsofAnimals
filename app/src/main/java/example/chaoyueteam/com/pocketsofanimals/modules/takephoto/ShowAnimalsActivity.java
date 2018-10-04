@@ -1,6 +1,7 @@
 package example.chaoyueteam.com.pocketsofanimals.modules.takephoto;
 
 import android.content.Intent;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -11,11 +12,16 @@ import android.widget.Toast;
 import java.io.File;
 
 import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UploadFileListener;
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.db.Album;
 import example.chaoyueteam.com.pocketsofanimals.image.Animal;
 import example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo;
 import example.chaoyueteam.com.pocketsofanimals.image.plant;
+import example.chaoyueteam.com.pocketsofanimals.speech.RandomStringGenerator;
+import example.chaoyueteam.com.pocketsofanimals.speech.Text2Audio;
 import example.chaoyueteam.com.pocketsofanimals.util.AlbumUtil;
 
 import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnimalBean;
@@ -37,11 +43,42 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                 String access_token = "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873";
                 try {
                     animal = getAnimalBean(path,access_token);
-                    BmobFile path_new = new BmobFile(new File(path));
+                    //File file = new File(path);
+                    Text2Audio text2Audio = new Text2Audio();
+                    String text = animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍");
+                    String audio_path = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
+                    //File file1 = new File(audio_path);
+                    File file = new File(audio_path);
+                    final BmobFile bmobFile = new BmobFile(file);
+                    //final BmobFile bmobFile1 = new BmobFile(file1);
+                    bmobFile.uploadblock(new UploadFileListener() {
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null) {
+                                Album album = new Album();
+                                album.setMp3File(bmobFile);
+//                                album.setAnimalImage(bmobFile);
+//                                album.setAnimalName(animal.getResult().get(0).getName());
+//                                album.setAnimalInformation(animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
+                                album.save(new SaveListener<String>() {
+                                    @Override
+                                    public void done(String s, BmobException e) {
+                                        if(e==null){
+                                            Log.d("bmob", "成功");
+                                        }else{
+                                            Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+                                        }
+                                    }
+                                });
+
+                            } else {
+                            }
+                        }
+                    });
+
                     //albumUtil.setAlbum(animal.getResult().get(0).getName(),path_new,null,animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
 
                     Log.d("onCreate","path:"+path);
-                    Log.d("onCreate","path_new:"+path_new);
                     Log.d("onCreate","name:"+animal.getResult().get(0).getName());
                     Log.d("onCreate","介绍:"+animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
 
