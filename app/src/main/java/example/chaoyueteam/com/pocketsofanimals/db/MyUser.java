@@ -29,7 +29,7 @@ public class MyUser extends BmobUser {
     }
 
     public void setPersonalityIntroduction(String personalityIntroduction) {
-        personalityIntroduction = personalityIntroduction;
+        this.personalityIntroduction = personalityIntroduction;
     }
 
 
