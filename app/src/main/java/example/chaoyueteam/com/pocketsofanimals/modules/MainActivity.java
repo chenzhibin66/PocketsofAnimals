@@ -1,6 +1,5 @@
 package example.chaoyueteam.com.pocketsofanimals.modules;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -18,7 +17,6 @@ import example.chaoyueteam.com.pocketsofanimals.modules.discover.DiscoverFragmen
 import example.chaoyueteam.com.pocketsofanimals.modules.location.LocationFragment;
 import example.chaoyueteam.com.pocketsofanimals.modules.me.MeFragment;
 import example.chaoyueteam.com.pocketsofanimals.modules.takephoto.TakePhotoFragment;
-import example.chaoyueteam.com.pocketsofanimals.map.MapAcitvity;
 
 public class MainActivity extends BaseActivity {
     private FragmentTransaction fragmentTransaction;

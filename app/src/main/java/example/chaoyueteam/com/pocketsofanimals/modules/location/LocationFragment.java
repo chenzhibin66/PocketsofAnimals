@@ -9,7 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -32,7 +31,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseFragment;
-import example.chaoyueteam.com.pocketsofanimals.map.MapAcitvity;
 
 public class LocationFragment extends BaseFragment {
 
