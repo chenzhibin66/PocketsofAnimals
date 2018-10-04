@@ -1,4 +1,4 @@
-package map;
+package example.chaoyueteam.com.pocketsofanimals.map;
 
 import android.Manifest;
 import android.content.pm.PackageManager;

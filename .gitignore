@@ -117,7 +117,7 @@ Thumbs.db
 *.war
 *.ear
 
-# virtual machine crash logs (Reference: http://www.java.com/en/download/help/error_hotspot.xml)
+# virtual machine crash logs (Reference: [图片]http://www.java.com/en/download/help/error_hotspot.xml)
 hs_err_pid*
 
 ## Plugin-specific files:
@@ -143,3 +143,4 @@ fabric.properties
 
 
 # End of https://www.gitignore.io/api/androidstudio
+

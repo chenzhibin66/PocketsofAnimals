@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="example.chaoyueteam.com.pocketsofanimals">
 
-
+    <!--ED:4C:C3:6E:6F:30:8A:61:7A:6E:13:A9:BC:B8:4B:2C:E0:87:4B:CE-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -40,7 +40,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="GVIaqHuFQGSZQPBvvGM4LWBW5gK4Y6sc" />
+            android:value="odhxlgXaKFqPS6scNulrYZQoGmysmpvf" />
 
         <activity android:name=".MainActivity" />
 
@@ -56,7 +56,7 @@
         </activity>
 
 
-        <activity android:name="map.MapAcitvity"></activity>
+        <activity android:name="example.chaoyueteam.com.pocketsofanimals.map.MapAcitvity"></activity>
 
         <service
             android:name="com.baidu.location.f"
