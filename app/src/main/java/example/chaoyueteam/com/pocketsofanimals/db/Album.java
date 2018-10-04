@@ -1,24 +1,20 @@
 package example.chaoyueteam.com.pocketsofanimals.db;
 
 import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.datatype.BmobDate;
+import cn.bmob.v3.datatype.BmobFile;
 
 public class Album extends BmobObject {
-    private BmobDate date;
     private String animalName;
-    private String animalImage;
+    private BmobFile animalImage;
     private String location;
     private String animalInformation;
-
-    public BmobDate getDate() {
-        return date;
-    }
+    private String newAnimalImage;
 
     public String getAnimalName() {
         return animalName;
     }
 
-    public String getAnimalImage() {
+    public BmobFile getAnimalImage() {
         return animalImage;
     }
 
@@ -30,15 +26,15 @@ public class Album extends BmobObject {
         return animalInformation;
     }
 
-    public void setDate(BmobDate date) {
-        this.date = date;
+    public String getNewAnimalImage() {
+        return newAnimalImage;
     }
 
     public void setAnimalName(String animalName) {
         this.animalName = animalName;
     }
 
-    public void setAnimalImage(String animalImage) {
+    public void setAnimalImage(BmobFile animalImage) {
         this.animalImage = animalImage;
     }
 
@@ -48,5 +44,9 @@ public class Album extends BmobObject {
 
     public void setAnimalInformation(String animalInformation) {
         this.animalInformation = animalInformation;
+    }
+
+    public void setNewAnimalImage(String newAnimalImage) {
+        this.newAnimalImage = newAnimalImage;
     }
 }
