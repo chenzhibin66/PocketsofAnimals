@@ -9,15 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
 
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import cn.bmob.v3.Bmob;
-
-
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseActivity;
 import example.chaoyueteam.com.pocketsofanimals.modules.discover.DiscoverFragment;

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#56a7a7"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,12 +15,19 @@
             android:layout_width="match_parent"
             android:layout_height="100dp">
 
+            <ImageView
+                android:id="@+id/return_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_left_back"
+                />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:textColor="#353535"
+                android:textColor="#fff"
                 android:textSize="16sp" />
 
             <View
@@ -40,7 +47,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-
                 android:hint="你的手机号码"
                 android:inputType="phone"
                 android:maxLength="11"

@@ -1,7 +1,6 @@
 package example.chaoyueteam.com.pocketsofanimals.db;
 
 import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.datatype.BmobDate;
 
 public class Album extends BmobObject {
     private String animalName;

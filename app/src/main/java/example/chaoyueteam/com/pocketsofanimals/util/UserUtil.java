@@ -13,13 +13,12 @@ import example.chaoyueteam.com.pocketsofanimals.db.MyUser;
 import example.chaoyueteam.com.pocketsofanimals.modules.RegisterActivity;
 
 public class UserUtil {
-    //注册
-    public void registered(String username,String password,String picture,
-                           String sex,String nick,String personalityIntroduction){
+    //注册 参数账号，密码，头像，性别，昵称，个性签名
+    public void registered(String username,String password,String pic, String sex,String nick,String personalityIntroduction){
         MyUser bu = new MyUser();
         bu.setUsername(username);
         bu.setPassword(password);
-        bu.setPicture(picture);
+        bu.setPicture(pic);
         bu.setPersonalityIntroduction(personalityIntroduction);
         bu.setNick(nick);
         bu.setSex(sex);
@@ -35,7 +34,7 @@ public class UserUtil {
         });
     }
 
-    //登录
+    //登录 账号，密码
     public void logIn(String username,String password){
         BmobUser.loginByAccount(username, password, new LogInListener<MyUser>() {
 
@@ -43,18 +42,25 @@ public class UserUtil {
             public void done(MyUser user, BmobException e) {
                 if(user!=null){
                     Log.i("smile","用户登陆成功");
+                }else {
+
                 }
             }
         });
     }
 
-    //更改服务器上个人信息
-    public void updateUserImformation(String picture,String sex,
+
+    //更改个人信息  参数图片，性别，昵称，个性签名
+    public void updateUserImformation(String pic,String sex,
+
                                       String nick,String personalityIntroduction) {
         MyUser myUser = new MyUser();
         myUser.setSex(sex);
         myUser.setNick(nick);
-        myUser.setPicture(picture);
+
+        myUser.setPicture(pic);
+
+
         myUser.setPersonalityIntroduction(personalityIntroduction);
         myUser.update(new UpdateListener() {
             @Override
@@ -68,7 +74,7 @@ public class UserUtil {
         });
     }
 
-    //修改密码
+    //修改密码 旧密码，新密码
     public void updateUserPassword(String oldPwd,String newPwd){
         MyUser.updateCurrentUserPassword(oldPwd, newPwd, new UpdateListener() {
 

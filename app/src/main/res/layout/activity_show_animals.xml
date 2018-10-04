@@ -7,6 +7,38 @@
     android:orientation="vertical"
     tools:context=".modules.MainActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#3c81d1">
+
+        <ImageView
+            android:id="@+id/back_takephoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_left_back"/>
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜动物历史"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:id="@+id/delete_all_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_delete" />
+
+
+
+    </RelativeLayout>
+
     <com.jpardogo.android.flabbylistview.lib.FlabbyListView
         android:id="@+id/list"
         android:background="#d76161"
