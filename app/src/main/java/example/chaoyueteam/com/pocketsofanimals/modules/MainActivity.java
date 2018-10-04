@@ -1,5 +1,6 @@
 package example.chaoyueteam.com.pocketsofanimals.modules;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,21 +10,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
 
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import cn.bmob.v3.Bmob;
-
-
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseActivity;
 import example.chaoyueteam.com.pocketsofanimals.modules.discover.DiscoverFragment;
 import example.chaoyueteam.com.pocketsofanimals.modules.location.LocationFragment;
 import example.chaoyueteam.com.pocketsofanimals.modules.me.MeFragment;
 import example.chaoyueteam.com.pocketsofanimals.modules.takephoto.TakePhotoFragment;
+import example.chaoyueteam.com.pocketsofanimals.map.MapAcitvity;
 
 public class MainActivity extends BaseActivity {
     private FragmentTransaction fragmentTransaction;
@@ -77,6 +70,8 @@ public class MainActivity extends BaseActivity {
                     if (lastfragment != 1) {
                         switchFragment(1);
                         lastfragment = 1;
+                        Intent i = new Intent(MainActivity.this,MapAcitvity.class);
+                        startActivity(i);
                     }
                     return true;
                 case R.id.navigation_discover:
