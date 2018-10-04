@@ -35,7 +35,6 @@ import example.chaoyueteam.com.pocketsofanimals.base.BaseFragment;
 public class LocationFragment extends BaseFragment {
 
     public LocationClient mLocationClient;
-    @BindView(R.id.bmapView)
     MapView bmapView;
     Unbinder unbinder;
     //创建LocationClient实例，LocationClient的构造函数接收一个Context参数
@@ -53,7 +52,7 @@ public class LocationFragment extends BaseFragment {
 
     @Override
     public void initView(Bundle state) {
-
+        bmapView=(MapView)getView().findViewById(R.id.bmapView);
         mLocationClient = new LocationClient(getContext().getApplicationContext());
         //getApplicationContext()获取全局Context参数并传入
         mLocationClient.registerLocationListener((BDLocationListener) new MyLocationListener());
