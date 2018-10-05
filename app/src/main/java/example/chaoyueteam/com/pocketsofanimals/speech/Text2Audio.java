@@ -7,7 +7,7 @@ import example.chaoyueteam.com.pocketsofanimals.util.HttpUtil;
 public class Text2Audio {
     public String TEXT2AUDIO_URL = "http://tsn.baidu.com/text2audio";
     public static void main(String[] args) throws Exception {
-        String tex = "郑豪，陈志彬喜欢你";
+        String tex = "";
         Text2Audio audio = new Text2Audio();
         audio.text2Audio(tex, "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873", "1", RandomStringGenerator.getRandomStringByLength(60));
     }
@@ -34,6 +34,7 @@ public class Text2Audio {
                 + "&pit=" + pit + "&vol=" + vol + "&per=" + per;
         System.out.println(params);
         HttpUtil httpUtil = new HttpUtil();
+        System.out.println("第二次调用");
         String data = httpUtil.postVoice(TEXT2AUDIO_URL,params);
         System.out.println("文件保存路径:"+data);
     }
@@ -50,13 +51,15 @@ public class Text2Audio {
      * @date 2017-5-26
      */
     @SuppressWarnings("static-access")
-    public void text2Audio(String tex,String tok,String ctp,String cuid) throws Exception{
+    public String  text2Audio(String tex,String tok,String ctp,String cuid) throws Exception{
         String params = "tex=" + URLEncoder.encode(tex, "UTF-8")
                 + "&lan=zh&cuid=" + cuid + "&ctp=1&tok=" + tok;
         System.out.println(params);
         HttpUtil httpUtil = new HttpUtil();
+        System.out.println("第一次调用");
         String data = httpUtil.postVoice(TEXT2AUDIO_URL,params);
         System.out.println("文件保存路径:"+data);
+        return  data;
     }
 }
 
