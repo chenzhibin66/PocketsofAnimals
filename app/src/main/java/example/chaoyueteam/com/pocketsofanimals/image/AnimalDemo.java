@@ -20,6 +20,7 @@ public class AnimalDemo {
         Animal plant = getAnimalBean("C:/Users/MSI-PC/Desktop/classdesign/狮子.jpg", "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873");
         System.out.println(plant.getResult().get(0).getName());
         System.out.println(plant.getResult().get(0).getBaike_info().substring(plant.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
+
     }
     /**
      * 动物识别Demo
@@ -56,5 +57,4 @@ public class AnimalDemo {
         System.out.println(result);
         return animal;
     }
-
 }

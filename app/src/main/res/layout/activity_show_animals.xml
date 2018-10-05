@@ -44,4 +44,13 @@
         android:background="#d76161"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/show_animals" />
+    <!--<com.jpardogo.android.flabbylistview.lib.FlabbyListView-->
+        <!--android:id="@+id/list"-->
+        <!--android:background="#d76161"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"/>-->
 </LinearLayout>
