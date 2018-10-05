@@ -25,7 +25,7 @@ import example.chaoyueteam.com.pocketsofanimals.util.BitmapUtil;
 import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnimalBean;
 
 public class ShowAnimalsActivity extends AppCompatActivity {
-    public static final String PATH = Environment.getExternalStorageDirectory().toString() + "/AndroidMedia/new_picture/";
+    public static final String PATH = Environment.getExternalStorageDirectory().toString() + "/New_animal_picture/";
     Album album;
     Animal animal;
     AlbumUtil albumUtil;
