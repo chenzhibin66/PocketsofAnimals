@@ -228,7 +228,7 @@ public class TakePhotoActivity extends AppCompatActivity implements CameraPrevie
                     intent.putExtra("path", PATH + filename);
                     intent.putExtra("width", bitmap.getWidth());
                     intent.putExtra("height", bitmap.getHeight());
-//                  intent.putExtra("cropperImage", bitmap);
+///                    intent.putExtra("cropperImage", bitmap);
                     startActivity(intent);
                     bitmap.recycle();
                     finish();

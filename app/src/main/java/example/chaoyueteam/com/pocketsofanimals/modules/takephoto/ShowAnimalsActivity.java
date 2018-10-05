@@ -1,28 +1,23 @@
 package example.chaoyueteam.com.pocketsofanimals.modules.takephoto;
 
 import android.content.Intent;
-import android.support.v4.content.FileProvider;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
 import android.util.Log;
-import android.widget.Toast;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UploadFileListener;
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.db.Album;
 import example.chaoyueteam.com.pocketsofanimals.image.Animal;
-import example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo;
-import example.chaoyueteam.com.pocketsofanimals.image.plant;
-import example.chaoyueteam.com.pocketsofanimals.speech.RandomStringGenerator;
-import example.chaoyueteam.com.pocketsofanimals.speech.Text2Audio;
 import example.chaoyueteam.com.pocketsofanimals.util.AlbumUtil;
+import example.chaoyueteam.com.pocketsofanimals.util.BitmapUtil;
 
 import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnimalBean;
 
@@ -43,38 +38,47 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                 String access_token = "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873";
                 try {
                     animal = getAnimalBean(path,access_token);
-                    //File file = new File(path);
-                    Text2Audio text2Audio = new Text2Audio();
+//                    //File file = new File(path);
+//                    Text2Audio text2Audio = new Text2Audio();
                     String text = animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍");
-                    String audio_path = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
-                    //File file1 = new File(audio_path);
-                    File file = new File(audio_path);
-                    final BmobFile bmobFile = new BmobFile(file);
-                    //final BmobFile bmobFile1 = new BmobFile(file1);
-                    bmobFile.uploadblock(new UploadFileListener() {
-                        @Override
-                        public void done(BmobException e) {
-                            if (e == null) {
-                                Album album = new Album();
-                                album.setMp3File(bmobFile);
-//                                album.setAnimalImage(bmobFile);
-//                                album.setAnimalName(animal.getResult().get(0).getName());
-//                                album.setAnimalInformation(animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
-                                album.save(new SaveListener<String>() {
-                                    @Override
-                                    public void done(String s, BmobException e) {
-                                        if(e==null){
-                                            Log.d("bmob", "成功");
-                                        }else{
-                                            Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
-                                        }
-                                    }
-                                });
-
-                            } else {
-                            }
-                        }
-                    });
+//                    String audio_path = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
+//                    //File file1 = new File(audio_path);
+//                    File file = new File(audio_path);
+//                    final BmobFile bmobFile = new BmobFile(file);
+//                    //final BmobFile bmobFile1 = new BmobFile(file1);
+//                    bmobFile.uploadblock(new UploadFileListener() {
+//                        @Override
+//                        public void done(BmobException e) {
+//                            if (e == null) {
+//                                Album album = new Album();
+//                                album.setMp3File(bmobFile);
+////                                album.setAnimalImage(bmobFile);
+////                                album.setAnimalName(animal.getResult().get(0).getName());
+////                                album.setAnimalInformation(animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
+//                                album.save(new SaveListener<String>() {
+//                                    @Override
+//                                    public void done(String s, BmobException e) {
+//                                        if(e==null){
+//                                            Log.d("bmob", "成功");
+//                                        }else{
+//                                            Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
+//                                        }
+//                                    }
+//                                });
+//
+//                            } else {
+//                            }
+//                        }
+//                    });
+                    //String path_new = "C:\\Users\\MSI-PC\\Desktop\\界面图片\\huge.jpg";
+                    File file1 = new File(path);
+                    Uri uri = Uri.fromFile(file1);
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    BitmapUtil bitmapUtil = new BitmapUtil();
+                    Bitmap bitmap1 = bitmapUtil.translate(bitmap,text);
+                    bitmapUtil.saveBitmapFile(bitmap1,"/storage/emulated/0/AndroidMedia/"+"2.jpg");
+                    Log.d("onCreate","成功");
+                    //bitmapUtil.translate();
 
                     //albumUtil.setAlbum(animal.getResult().get(0).getName(),path_new,null,animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
 
@@ -88,4 +92,5 @@ public class ShowAnimalsActivity extends AppCompatActivity {
             }
         }).start();
     }
+
 }
