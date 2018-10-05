@@ -1,9 +1,7 @@
 package example.chaoyueteam.com.pocketsofanimals.util;
 
 import android.util.Log;
-
 import java.util.List;
-
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
