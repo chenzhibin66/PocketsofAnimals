@@ -33,7 +33,7 @@ public class BitmapUtil {
     /**
      * 配文的字体大小
      */
-    private float textSize = 100;
+    private float textSize = 80;
     /**
      * 图片的宽度
      */

@@ -3,10 +3,13 @@ package example.chaoyueteam.com.pocketsofanimals.modules.takephoto;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
+import android.widget.ImageView;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -22,10 +25,11 @@ import example.chaoyueteam.com.pocketsofanimals.util.BitmapUtil;
 import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnimalBean;
 
 public class ShowAnimalsActivity extends AppCompatActivity {
-
+    public static final String PATH = Environment.getExternalStorageDirectory().toString() + "/AndroidMedia/new_picture/";
     Album album;
     Animal animal;
     AlbumUtil albumUtil;
+    Bitmap bitmap1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,8 +79,13 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                     Uri uri = Uri.fromFile(file1);
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     BitmapUtil bitmapUtil = new BitmapUtil();
-                    Bitmap bitmap1 = bitmapUtil.translate(bitmap,text);
-                    bitmapUtil.saveBitmapFile(bitmap1,"/storage/emulated/0/AndroidMedia/"+"2.jpg");
+                    bitmap1 = bitmapUtil.translate(bitmap,text);
+                    long dateTaken = System.currentTimeMillis();
+                    // 图像名称
+                    String filename = DateFormat.format("yyyy-MM-dd kk.mm.ss", dateTaken).toString() + ".jpg";
+                    String path_new = PATH+filename;
+                    bitmapUtil.saveBitmapFile(bitmap1,path_new);
+
                     Log.d("onCreate","成功");
                     //bitmapUtil.translate();
 
@@ -91,6 +100,7 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                 }
             }
         }).start();
+
     }
 
 }
