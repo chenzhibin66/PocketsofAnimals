@@ -4,6 +4,8 @@ import android.util.Log;
 
 import java.io.File;
 import java.util.List;
+
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
@@ -47,6 +49,23 @@ public class AlbumUtil {
                             }
                         }
                     });
+                }
+            }
+        });
+        return album;
+    }
+    public Album getAlbum(String url){
+        BmobQuery<Album> query = new BmobQuery<Album>();
+        query.addWhereEqualTo("animalImage",new BmobFile(new File(url)));
+        query.findObjects(new FindListener<Album>() {
+            @Override
+            public void done(List<Album> object, BmobException e) {
+                if(e==null){
+                    for (Album album1 : object) {
+                        album = album1;
+                    }
+                }else{
+                    Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
                 }
             }
         });
