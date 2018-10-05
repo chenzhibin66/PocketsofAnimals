@@ -9,18 +9,10 @@ public class Album extends BmobObject {
     private BmobFile newAnimalImage;
     private BmobFile animalImage;
     private String location;
-
-    public void setMp3File(BmobFile mp3File) {
-        this.mp3File = mp3File;
-    }
-
-    public BmobFile getMp3File() {
-
-        return mp3File;
-    }
-
     private String animalInformation;
-    private  BmobFile mp3File;
+    private BmobFile mp3File;
+
+
 
     public String getAnimalName() {
         return animalName;
@@ -42,6 +34,10 @@ public class Album extends BmobObject {
         return newAnimalImage;
     }
 
+    public BmobFile getMp3File() {
+        return mp3File;
+    }
+
     public void setAnimalName(String animalName) {
         this.animalName = animalName;
     }
@@ -60,5 +56,9 @@ public class Album extends BmobObject {
 
     public void setNewAnimalImage(BmobFile newAnimalImage) {
         this.newAnimalImage = newAnimalImage;
+    }
+
+    public void setMp3File(BmobFile mp3File) {
+        this.mp3File = mp3File;
     }
 }

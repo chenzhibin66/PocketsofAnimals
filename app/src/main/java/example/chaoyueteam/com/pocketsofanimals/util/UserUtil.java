@@ -2,14 +2,21 @@ package example.chaoyueteam.com.pocketsofanimals.util;
 
 import android.util.Log;
 
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
+import example.chaoyueteam.com.pocketsofanimals.db.AnimalIntroduction;
 import example.chaoyueteam.com.pocketsofanimals.db.MyUser;
 
 public class UserUtil {
+
     //注册 参数账号，密码，头像，性别，昵称，个性签名
     public void registered(String username,String password,String pic,
                            String sex,String nick,String personalityIntroduction){
@@ -75,6 +82,25 @@ public class UserUtil {
                     //toast("密码修改成功，可以用新密码进行登录啦");
                 }else{
                     //toast("失败:" + e.getMessage());
+                }
+            }
+        });
+    }
+    public void getImage(String animaName){
+        BmobQuery<AnimalIntroduction> query = new BmobQuery<AnimalIntroduction>();
+        query.addWhereEqualTo("AnimalName",animaName);
+        query.findObjects(new FindListener<AnimalIntroduction>() {
+            @Override
+            public void done(List<AnimalIntroduction> object, BmobException e) {
+                if(e==null){
+                    for (AnimalIntroduction animalIntroduction : object) {
+                        BmobFile bmobFile = animalIntroduction.getAnimalPhoto();
+                        if(bmobFile != null){
+
+                        }
+                    }
+                }else{
+                    Log.e("e","图片获取失败");
                 }
             }
         });
