@@ -55,6 +55,7 @@ public class TakePhotoFragment extends BaseFragment implements View.OnClickListe
         takePhoto.setOnClickListener(this);
         recordPhoto.setOnClickListener(this);
         askPermission();
+        view.getBackground().setAlpha(120);
         return view;
     }
 

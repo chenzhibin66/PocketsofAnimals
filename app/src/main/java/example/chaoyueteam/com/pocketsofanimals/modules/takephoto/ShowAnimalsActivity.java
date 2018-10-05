@@ -3,23 +3,16 @@ package example.chaoyueteam.com.pocketsofanimals.modules.takephoto;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.jpardogo.android.flabbylistview.lib.FlabbyListView;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
-import android.util.Log;
-
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import example.chaoyueteam.com.pocketsofanimals.R;
-
 import example.chaoyueteam.com.pocketsofanimals.db.Album;
 import example.chaoyueteam.com.pocketsofanimals.image.Animal;
 import example.chaoyueteam.com.pocketsofanimals.modules.MainActivity;
