@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity {
     private DiscoverFragment discoverFragment;
     private MeFragment meFragment;
     private Fragment[] fragments;
-    private int lastfragment;
+    private int lastfragment = 0;
 
     private FragmentTransaction transaction;
 
@@ -47,7 +47,6 @@ public class MainActivity extends BaseActivity {
         discoverFragment = new DiscoverFragment();
         meFragment = new MeFragment();
         fragments = new Fragment[]{takephotoFragment, locationFragment, discoverFragment, meFragment};
-        lastfragment = 0;
         switchFragment(0);
     }
 
@@ -95,10 +94,16 @@ public class MainActivity extends BaseActivity {
      */
     private void switchFragment(int index) {
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainview, fragments[index])
-                .commit();
-        lastfragment = index;
+        if (fragments[index].isAdded()) {
+            transaction.hide(fragments[lastfragment])
+                    .show(fragments[index])
+                    .commit();
+        } else {
+            transaction.add(R.id.mainview, fragments[index])
+                    .hide(fragments[lastfragment])
+                    .show(fragments[index])
+                    .commit();
+        }
     }
-
 
 }
