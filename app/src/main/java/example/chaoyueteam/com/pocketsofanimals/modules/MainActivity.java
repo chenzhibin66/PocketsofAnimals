@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 
 import com.baidu.mapapi.SDKInitializer;
+
+import cn.bmob.v3.Bmob;
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseActivity;
 import example.chaoyueteam.com.pocketsofanimals.modules.discover.DiscoverFragment;
@@ -38,6 +40,7 @@ public class MainActivity extends BaseActivity {
     */
     @Override
     protected void initView(Bundle savedInstanceState) {
+        Bmob.initialize(this, "e3f7e3dcd335515e9aa1040d7067bace");
         SDKInitializer.initialize(getApplicationContext());
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

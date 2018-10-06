@@ -2,11 +2,13 @@ package example.chaoyueteam.com.pocketsofanimals.image;
 
 import java.util.List;
 
-public class Animal{
+public class Animal {
+    private int type;
     private Long log_id;
     private List<Result> result;
     private  List<Baike_info> baike_infos;
     private  String  names;
+    private String description;
 
     public void setDescription(String description) {
         this.description = description;
@@ -27,11 +29,6 @@ public class Animal{
 
         return description;
     }
-
-    private String description
-            ;
-
-
 
     public void setBaike_infos(List<Baike_info> baike_infos) {
         this.baike_infos = baike_infos;
