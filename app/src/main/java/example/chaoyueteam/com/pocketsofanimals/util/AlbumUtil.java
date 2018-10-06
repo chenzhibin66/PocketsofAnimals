@@ -16,59 +16,49 @@ import example.chaoyueteam.com.pocketsofanimals.db.Album;
 
 public class AlbumUtil {
 
-    private Album album;
-    public Album setAlbuma(String path_imag, String path_mp3, final String annimalName,
-                           final String animalIformation) {
+    public void setAlbuma(String path_imag, String path_mp3,String path_newimage,
+                          final String annimalName,final String animalIformation) {
         File file_image = new File(path_imag);
         File file_mp3 = new File(path_mp3);
+        File file_newimage = new File(path_newimage);
         final BmobFile bmobFile_imag = new BmobFile(file_image);
         final BmobFile bmobFile_mp3 = new BmobFile(file_mp3);
-        bmobFile_imag.uploadblock(new UploadFileListener(){
+        final BmobFile bmobFile_newImage = new BmobFile(file_newimage);
+
+        bmobFile_newImage.uploadblock(new UploadFileListener() {
             @Override
             public void done(BmobException e) {
-                if (e == null) {
-                    bmobFile_mp3.uploadblock(new UploadFileListener() {
-                        @Override
-                        public void done(BmobException e) {
-                            if (e == null) {
-                                Album album = new Album();
-                                album.setMp3File(bmobFile_mp3);
-                                album.setAnimalImage(bmobFile_imag);
-                                album.setAnimalName(annimalName);
-                                album.setAnimalInformation(animalIformation);
-                                album.save(new SaveListener<String>() {
-                                    @Override
-                                    public void done(String s, BmobException e) {
-                                        if (e == null) {
-                                            Log.d("bmob", "成功");
-                                        } else {
-                                            Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
-                                        }
+                bmobFile_imag.uploadblock(new UploadFileListener(){
+                    @Override
+                    public void done(BmobException e) {
+                        if (e == null) {
+                            bmobFile_mp3.uploadblock(new UploadFileListener() {
+                                @Override
+                                public void done(BmobException e) {
+                                    if (e == null) {
+                                        Album album = new Album();
+                                        album.setMp3File(bmobFile_mp3);
+                                        album.setAnimalImage(bmobFile_imag);
+                                        album.setAnimalName(annimalName);
+                                        album.setAnimalInformation(animalIformation);
+                                        album.setNewAnimalImage(bmobFile_newImage);
+                                        album.save(new SaveListener<String>() {
+                                            @Override
+                                            public void done(String s, BmobException e) {
+                                                if (e == null) {
+                                                    Log.d("bmob", "成功");
+                                                } else {
+                                                    Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                                                }
+                                            }
+                                        });
                                     }
-                                });
-                            }
+                                }
+                            });
                         }
-                    });
-                }
-            }
-        });
-        return album;
-    }
-    public Album getAlbum(String url){
-        BmobQuery<Album> query = new BmobQuery<Album>();
-        query.addWhereEqualTo("animalImage",new BmobFile(new File(url)));
-        query.findObjects(new FindListener<Album>() {
-            @Override
-            public void done(List<Album> object, BmobException e) {
-                if(e==null){
-                    for (Album album1 : object) {
-                        album = album1;
                     }
-                }else{
-                    Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
-                }
+                });
             }
         });
-        return album;
     }
 }

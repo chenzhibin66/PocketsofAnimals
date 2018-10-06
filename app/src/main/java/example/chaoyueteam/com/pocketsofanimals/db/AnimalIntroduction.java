@@ -5,14 +5,14 @@ import cn.bmob.v3.datatype.BmobFile;
 
 public class AnimalIntroduction extends BmobObject {
     private BmobFile animalPhoto;
-    private String Animalname;
+    private String AnimalName;
 
     public BmobFile getAnimalPhoto() {
         return animalPhoto;
     }
 
     public String getAnimalname() {
-        return Animalname;
+        return AnimalName;
     }
 
     public void setAnimalPhoto(BmobFile animalPhoto) {
@@ -20,6 +20,6 @@ public class AnimalIntroduction extends BmobObject {
     }
 
     public void setAnimalname(String animalname) {
-        Animalname = animalname;
+        AnimalName = animalname;
     }
 }
