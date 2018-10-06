@@ -6,14 +6,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".modules.MainActivity">
-
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <ImageView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/show_animals" />
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="10dp"
+        android:id="@+id/fb"
+        android:src="@drawable/picture_slector"/>
     <!--<com.jpardogo.android.flabbylistview.lib.FlabbyListView-->
         <!--android:id="@+id/list"-->
         <!--android:background="#d76161"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"/>-->
+</FrameLayout>
 </LinearLayout>

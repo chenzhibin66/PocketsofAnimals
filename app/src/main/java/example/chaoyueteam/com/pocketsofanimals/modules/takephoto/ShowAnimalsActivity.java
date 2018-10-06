@@ -3,20 +3,29 @@ package example.chaoyueteam.com.pocketsofanimals.modules.takephoto;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
+
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 import java.util.List;
@@ -39,17 +48,25 @@ import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnima
 
 public class ShowAnimalsActivity extends AppCompatActivity {
 
+
     public static final String PATH = Environment.getExternalStorageDirectory().toString() + "/AndroidMedia/new_picture/";
     Album album;
+    private MediaPlayer mediaPlayer = new MediaPlayer();
     Animal animal;
     AlbumUtil albumUtil;
     Bitmap bitmap1;
+
+    String mp3_path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_animals);
-        new Thread(new Runnable() {
+        final FloatingActionButton floatingActionButton = findViewById(R.id.fb);
+        final ImageView imageView = findViewById(R.id.show_animals);
+        Glide.with(getApplicationContext()).load(R.drawable.loading).into(imageView);
+        final ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(new Runnable() {
             @Override
             public void run() {
                 Intent intent = getIntent();
@@ -58,14 +75,18 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                 try {
 
                     animal = getAnimalBean(path_imag,access_token);
-                    //String path_new = "C:\\Users\\MSI-PC\\Desktop\\界面图片\\huge.jpg";
                     // 图像名称
-                    String text = animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍");
                     long dateTaken = System.currentTimeMillis();
 
                     String filename = DateFormat.format("yyyy-MM-dd kk.mm.ss", dateTaken).toString() + ".jpg";
                     String path_new = PATH+filename;
                     File file1 = new File(path_imag);
+
+                    //File file = new File(path);
+                    Text2Audio text2Audio = new Text2Audio();
+                    String text = animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍");
+                    mp3_path = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
+
                     Uri uri = Uri.fromFile(file1);
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                     BitmapUtil bitmapUtil = new BitmapUtil();
@@ -73,9 +94,6 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                     bitmapUtil.saveBitmapFile(bitmap1,path_new);
 
                     Log.d("onCreate","成功");
-                    animal = getAnimalBean(path_imag,access_token);
-                    Text2Audio text2Audio = new Text2Audio();
-
                     String path_mp3 = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
                     AlbumUtil albumUtil = new AlbumUtil();
                     album = albumUtil.setAlbuma(path_imag,path_mp3,
@@ -89,9 +107,39 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageView.setImageBitmap(bitmap1);
+                        initMediaPlayer(mp3_path);
+                        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if(!mediaPlayer.isPlaying()){
+                                    mediaPlayer.start();
+                                }else {
+                                    mediaPlayer.pause();
+                                }
+                            }
+                        });
+
+
+                    }
+                });
             }
-        }).start();
+        });
+        executorService.shutdown();
 
     }
+    private void initMediaPlayer(String path){
+        File file =new File(path);
+        try {
+            mediaPlayer.setDataSource(path);
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
