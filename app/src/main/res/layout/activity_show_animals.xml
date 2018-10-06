@@ -9,7 +9,11 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<ImageView
+<example.chaoyueteam.com.pocketsofanimals.util.ZoomImageView
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginRight="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/show_animals" />
@@ -20,11 +24,14 @@
         android:layout_gravity="bottom|end"
         android:layout_marginRight="10dp"
         android:id="@+id/fb"
-        android:src="@drawable/picture_slector"/>
+        android:src="@drawable/start"
+        android:backgroundTint="@color/white"
+        />
     <!--<com.jpardogo.android.flabbylistview.lib.FlabbyListView-->
         <!--android:id="@+id/list"-->
         <!--android:background="#d76161"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"/>-->
+
 </FrameLayout>
 </LinearLayout>

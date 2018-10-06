@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    sourceSets{
-        main{
-            jniLibs.srcDirs=['libs']
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
 
 //            jni.srcDirs = []    //disable automatic ndk-build
         }
