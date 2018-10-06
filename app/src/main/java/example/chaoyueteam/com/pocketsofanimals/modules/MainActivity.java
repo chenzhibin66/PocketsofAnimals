@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.baidu.mapapi.SDKInitializer;
 
+import cn.bmob.v3.Bmob;
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseActivity;
 import example.chaoyueteam.com.pocketsofanimals.modules.discover.DiscoverFragment;
@@ -26,7 +27,7 @@ public class MainActivity extends BaseActivity {
     private DiscoverFragment discoverFragment;
     private MeFragment meFragment;
     private Fragment[] fragments;
-    private int lastfragment;
+    private int lastfragment = 0;
 
     private FragmentTransaction transaction;
 
@@ -39,6 +40,7 @@ public class MainActivity extends BaseActivity {
     */
     @Override
     protected void initView(Bundle savedInstanceState) {
+        Bmob.initialize(this, "e3f7e3dcd335515e9aa1040d7067bace");
         SDKInitializer.initialize(getApplicationContext());
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -47,7 +49,6 @@ public class MainActivity extends BaseActivity {
         discoverFragment = new DiscoverFragment();
         meFragment = new MeFragment();
         fragments = new Fragment[]{takephotoFragment, locationFragment, discoverFragment, meFragment};
-        lastfragment = 0;
         switchFragment(0);
     }
 
@@ -95,10 +96,16 @@ public class MainActivity extends BaseActivity {
      */
     private void switchFragment(int index) {
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainview, fragments[index])
-                .commit();
-        lastfragment = index;
+        if (fragments[index].isAdded()) {
+            transaction.hide(fragments[lastfragment])
+                    .show(fragments[index])
+                    .commit();
+        } else {
+            transaction.add(R.id.mainview, fragments[index])
+                    .hide(fragments[lastfragment])
+                    .show(fragments[index])
+                    .commit();
+        }
     }
-
 
 }

@@ -1,6 +1,8 @@
 package example.chaoyueteam.com.pocketsofanimals.util;
 
+import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,16 +16,16 @@ import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import example.chaoyueteam.com.pocketsofanimals.db.AnimalIntroduction;
 import example.chaoyueteam.com.pocketsofanimals.db.MyUser;
+import example.chaoyueteam.com.pocketsofanimals.modules.RegisterActivity;
 
 public class UserUtil {
 
     //注册 参数账号，密码，头像，性别，昵称，个性签名
-    public void registered(String username,String password,String pic,
-                           String sex,String nick,String personalityIntroduction){
+    public void registered(String username,String password,String pic, String sex,String nick,String personalityIntroduction){
         MyUser bu = new MyUser();
         bu.setUsername(username);
         bu.setPassword(password);
-        bu.setPic(pic);
+        bu.setPicture(pic);
         bu.setPersonalityIntroduction(personalityIntroduction);
         bu.setNick(nick);
         bu.setSex(sex);
@@ -47,18 +49,25 @@ public class UserUtil {
             public void done(MyUser user, BmobException e) {
                 if(user!=null){
                     Log.i("smile","用户登陆成功");
+                }else {
+
                 }
             }
         });
     }
 
+
     //更改个人信息  参数图片，性别，昵称，个性签名
     public void updateUserImformation(String pic,String sex,
+
                                       String nick,String personalityIntroduction) {
         MyUser myUser = new MyUser();
         myUser.setSex(sex);
         myUser.setNick(nick);
-        myUser.setPic(pic);
+
+        myUser.setPicture(pic);
+
+
         myUser.setPersonalityIntroduction(personalityIntroduction);
         myUser.update(new UpdateListener() {
             @Override

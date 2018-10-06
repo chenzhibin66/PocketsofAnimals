@@ -2,8 +2,6 @@ package example.chaoyueteam.com.pocketsofanimals.modules.takephoto;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
-
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
@@ -15,27 +13,12 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.bumptech.glide.Glide;
-
-import java.io.BufferedOutputStream;
+import android.widget.Toast;
 import java.io.File;
-
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-
-import java.util.List;
-
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
-import cn.bmob.v3.listener.UploadBatchListener;
-import cn.bmob.v3.listener.UploadFileListener;
-
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.db.Album;
 import example.chaoyueteam.com.pocketsofanimals.image.Animal;
@@ -43,7 +26,6 @@ import example.chaoyueteam.com.pocketsofanimals.speech.RandomStringGenerator;
 import example.chaoyueteam.com.pocketsofanimals.speech.Text2Audio;
 import example.chaoyueteam.com.pocketsofanimals.util.AlbumUtil;
 import example.chaoyueteam.com.pocketsofanimals.util.BitmapUtil;
-
 import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnimalBean;
 
 public class ShowAnimalsActivity extends AppCompatActivity {
@@ -65,7 +47,7 @@ public class ShowAnimalsActivity extends AppCompatActivity {
         final FloatingActionButton floatingActionButton = findViewById(R.id.fb);
         final ImageView imageView = findViewById(R.id.show_animals);
         Glide.with(getApplicationContext()).load(R.drawable.loading).into(imageView);
-        final ExecutorService executorService = Executors.newSingleThreadExecutor();
+        final ExecutorService executorService = Executors.newCachedThreadPool();
         executorService.execute(new Runnable() {
             @Override
             public void run() {
@@ -96,14 +78,12 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                     Log.d("onCreate","成功");
                     String path_mp3 = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
                     AlbumUtil albumUtil = new AlbumUtil();
-                    album = albumUtil.setAlbuma(path_imag,path_mp3,
+                    albumUtil.setAlbuma(path_imag,path_mp3,path_imag,
                             animal.getResult().get(0).getName(),
                             animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
-
                     Log.d("onCreate","path:"+path_imag);
                     Log.d("onCreate","name:"+animal.getResult().get(0).getName());
                     Log.d("onCreate","介绍:"+animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -122,8 +102,6 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                                 }
                             }
                         });
-
-
                     }
                 });
             }
@@ -138,6 +116,7 @@ public class ShowAnimalsActivity extends AppCompatActivity {
             mediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
+            Toast.makeText(getApplicationContext(),"文件不存在:"+file,Toast.LENGTH_SHORT).show();
         }
     }
 

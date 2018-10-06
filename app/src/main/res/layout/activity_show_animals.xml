@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#008B8B"
     android:orientation="vertical"
     tools:context=".modules.MainActivity">
 <FrameLayout
     android:layout_width="match_parent"
+
     android:layout_height="match_parent">
 <ImageView
     android:layout_width="match_parent"
@@ -21,10 +24,5 @@
         android:layout_marginRight="10dp"
         android:id="@+id/fb"
         android:src="@drawable/picture_slector"/>
-    <!--<com.jpardogo.android.flabbylistview.lib.FlabbyListView-->
-        <!--android:id="@+id/list"-->
-        <!--android:background="#d76161"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"/>-->
 </FrameLayout>
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>

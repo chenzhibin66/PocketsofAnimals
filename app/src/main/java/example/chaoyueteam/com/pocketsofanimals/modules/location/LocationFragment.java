@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.TextureMapView;
 import com.baidu.mapapi.model.LatLng;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ import example.chaoyueteam.com.pocketsofanimals.base.BaseFragment;
 
 public class LocationFragment extends BaseFragment {
 
+    private String TAG = "LocationFragment";
     public LocationClient mLocationClient;
     MapView bmapView;
     Unbinder unbinder;
@@ -52,12 +55,13 @@ public class LocationFragment extends BaseFragment {
 
     @Override
     public void initView(Bundle state) {
-        bmapView=(MapView)getView().findViewById(R.id.bmapView);
-        mLocationClient = new LocationClient(getContext().getApplicationContext());
+        Log.d(TAG, "initView: ");
+        bmapView=(MapView) getView().findViewById(R.id.bmapView);
+        mLocationClient = new LocationClient(getActivity().getApplicationContext());
         //getApplicationContext()获取全局Context参数并传入
         mLocationClient.registerLocationListener((BDLocationListener) new MyLocationListener());
         //注册监听器，当获取到位置信息时就会回调这个位置监听器
-        SDKInitializer.initialize(getContext().getApplicationContext());
+        SDKInitializer.initialize(getActivity().getApplicationContext());
         //初始化，在setContentView前实现，否则回出错，使地图显示出来
 //        setContentView(R.layout.fragment_location);
 
@@ -105,24 +109,19 @@ public class LocationFragment extends BaseFragment {
 
         //将Location中包含的经度和纬度分别封装到MyLocationData.Builder中
         //然后把MyLocationData设置到了BaiduMap的setMyLocationData方法中
-        MyLocationData.Builder locationBuilder = new MyLocationData.Builder();
+        /*MyLocationData.Builder locationBuilder = new MyLocationData.Builder();
         locationBuilder.latitude(location.getLatitude());
         locationBuilder.longitude(location.getLongitude());
-        MyLocationData locationData = locationBuilder.build();
-        baiduMap.setMyLocationData(locationData);
+        MyLocationData locationData = locationBuilder.build();*/
+        MyLocationData locData = new MyLocationData.Builder()
+                .accuracy(location.getRadius())
+                // 此处设置开发者获取到的方向信息，顺时针0-360
+                .direction(100).latitude(location.getLatitude())
+                .longitude(location.getLongitude()).build();
+        baiduMap.setMyLocationData(locData);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        bmapView.onResume();
-    }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        bmapView.onPause();
-    }
 
     //
     private void initLocation() {
@@ -141,6 +140,18 @@ public class LocationFragment extends BaseFragment {
         mLocationClient.start();
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bmapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        bmapView.onPause();
+    }
     //销毁活动
     @Override
     public void onDestroy() {
@@ -148,6 +159,7 @@ public class LocationFragment extends BaseFragment {
         mLocationClient.stop();
         bmapView.onDestroy();
     }
+
 
     //对权限申请结果的逻辑处理
     //通过一个循环对申请的每个权限都进行判断，如果有任何一个权限被拒绝，则直接调用finish()方法关闭当前程序
@@ -176,21 +188,6 @@ public class LocationFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    //
     public class MyLocationListener implements BDLocationListener {
 
         @Override
@@ -215,7 +212,7 @@ public class LocationFragment extends BaseFragment {
             } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {
                 currentPosition.append("网络");
             }
-            Toast.makeText(getActivity(), currentPosition, Toast.LENGTH_SHORT).show();
+           /* Toast.makeText(getActivity(), currentPosition, Toast.LENGTH_SHORT).show();*/
 
         }
     }
