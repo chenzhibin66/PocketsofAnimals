@@ -2,23 +2,34 @@ package example.chaoyueteam.com.pocketsofanimals.modules.takephoto;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.db.Album;
 import example.chaoyueteam.com.pocketsofanimals.image.Animal;
+import example.chaoyueteam.com.pocketsofanimals.speech.RandomStringGenerator;
+import example.chaoyueteam.com.pocketsofanimals.speech.Text2Audio;
 import example.chaoyueteam.com.pocketsofanimals.util.AlbumUtil;
 import example.chaoyueteam.com.pocketsofanimals.util.BitmapUtil;
 
@@ -27,14 +38,20 @@ import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnima
 public class ShowAnimalsActivity extends AppCompatActivity {
     public static final String PATH = Environment.getExternalStorageDirectory().toString() + "/New_animal_picture/";
     Album album;
+    private MediaPlayer mediaPlayer = new MediaPlayer();
     Animal animal;
     AlbumUtil albumUtil;
     Bitmap bitmap1;
+    String mp3_path;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_animals);
-        new Thread(new Runnable() {
+        final FloatingActionButton floatingActionButton = findViewById(R.id.fb);
+        final ImageView imageView = findViewById(R.id.show_animals);
+        Glide.with(getApplicationContext()).load(R.drawable.loading).into(imageView);
+        final ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(new Runnable() {
             @Override
             public void run() {
                 Intent intent = getIntent();
@@ -42,39 +59,11 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                 String access_token = "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873";
                 try {
                     animal = getAnimalBean(path,access_token);
-//                    //File file = new File(path);
-//                    Text2Audio text2Audio = new Text2Audio();
+                    //File file = new File(path);
+                    Text2Audio text2Audio = new Text2Audio();
                     String text = animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍");
-//                    String audio_path = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
-//                    //File file1 = new File(audio_path);
-//                    File file = new File(audio_path);
-//                    final BmobFile bmobFile = new BmobFile(file);
-//                    //final BmobFile bmobFile1 = new BmobFile(file1);
-//                    bmobFile.uploadblock(new UploadFileListener() {
-//                        @Override
-//                        public void done(BmobException e) {
-//                            if (e == null) {
-//                                Album album = new Album();
-//                                album.setMp3File(bmobFile);
-////                                album.setAnimalImage(bmobFile);
-////                                album.setAnimalName(animal.getResult().get(0).getName());
-////                                album.setAnimalInformation(animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
-//                                album.save(new SaveListener<String>() {
-//                                    @Override
-//                                    public void done(String s, BmobException e) {
-//                                        if(e==null){
-//                                            Log.d("bmob", "成功");
-//                                        }else{
-//                                            Log.i("bmob","失败："+e.getMessage()+","+e.getErrorCode());
-//                                        }
-//                                    }
-//                                });
-//
-//                            } else {
-//                            }
-//                        }
-//                    });
-                    //String path_new = "C:\\Users\\MSI-PC\\Desktop\\界面图片\\huge.jpg";
+                    mp3_path = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
+
                     File file1 = new File(path);
                     Uri uri = Uri.fromFile(file1);
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
@@ -98,9 +87,39 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageView.setImageBitmap(bitmap1);
+                        initMediaPlayer(mp3_path);
+                        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if(!mediaPlayer.isPlaying()){
+                                    mediaPlayer.start();
+                                }else {
+                                    mediaPlayer.pause();
+                                }
+                            }
+                        });
+
+
+                    }
+                });
             }
-        }).start();
+        });
+        executorService.shutdown();
 
     }
+    private void initMediaPlayer(String path){
+        File file =new File(path);
+        try {
+            mediaPlayer.setDataSource(path);
+            mediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
