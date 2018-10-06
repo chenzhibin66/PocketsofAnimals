@@ -20,6 +20,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(getLayoutResId(), container, false);
+        mFragmentActivity=getSupportActivity();
         return view;
     }
 
@@ -58,4 +59,5 @@ public abstract class BaseFragment extends Fragment {
     protected void initRecyclerView() {
 
     }
+
 }

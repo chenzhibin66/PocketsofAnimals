@@ -40,39 +40,29 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     //glide
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'jp.wasabeef:glide-transformations:2.0.1'
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.0.+'
     implementation 'junit:junit:4.12'
     //butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    implementation 'com.jpardogo.flabbylistview:library:1.0.0'
-
+    //discover中的recycler
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     //json
     implementation files('libs/aip-java-sdk-4.6.0.jar')
     implementation files('libs/fastjson-1.2.47.jar')
     implementation files('libs/json-20160810.jar')
     implementation files('libs/log4j-1.2.17.jar')
     implementation files('libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar')
-
-
-
     implementation 'cn.bmob.android:bmob-sdk:3.6.3'
-
     //bmob-push：Bmob的推送包
     implementation 'cn.bmob.android:bmob-push:0.8'
-
     //bmob-im：Bmob的即时通讯包，注意每个版本的im依赖特定版本的bmob-sdk，具体的依赖关系可查看下面注释[2]
     implementation 'cn.bmob.android:bmob-im:2.1.0@aar'
-
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     implementation 'cn.bmob.android:http-legacy:1.0'
-
-
     implementation files('libs/BaiduLBS_Android.jar')
     implementation files('libs/IndoorscapeAlbumPlugin.jar')
-
 }

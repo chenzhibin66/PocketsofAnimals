@@ -1,22 +1,26 @@
 package example.chaoyueteam.com.pocketsofanimals.util;
 
-import android.util.Log;
 
+
+import android.util.Log;
+import java.io.File;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
+import cn.bmob.v3.listener.UploadFileListener;
 import example.chaoyueteam.com.pocketsofanimals.db.MyUser;
 
 public class UserUtil {
+
     //注册 参数账号，密码，头像，性别，昵称，个性签名
-    public void registered(String username,String password,String pic,
-                           String sex,String nick,String personalityIntroduction){
+    public void registered(String username,String password,String pic, String sex,String nick,String personalityIntroduction){
         MyUser bu = new MyUser();
         bu.setUsername(username);
         bu.setPassword(password);
-        bu.setPic(pic);
+        bu.setPicture(pic);
         bu.setPersonalityIntroduction(personalityIntroduction);
         bu.setNick(nick);
         bu.setSex(sex);
@@ -40,26 +44,8 @@ public class UserUtil {
             public void done(MyUser user, BmobException e) {
                 if(user!=null){
                     Log.i("smile","用户登陆成功");
-                }
-            }
-        });
-    }
+                }else {
 
-    //更改个人信息  参数图片，性别，昵称，个性签名
-    public void updateUserImformation(String pic,String sex,
-                                      String nick,String personalityIntroduction) {
-        MyUser myUser = new MyUser();
-        myUser.setSex(sex);
-        myUser.setNick(nick);
-        myUser.setPic(pic);
-        myUser.setPersonalityIntroduction(personalityIntroduction);
-        myUser.update(new UpdateListener() {
-            @Override
-            public void done(BmobException e) {
-                if(e==null){
-                    //toast("更新用户信息成功");
-                }else{
-                    //toast("更新用户信息失败:" + e.getMessage());
                 }
             }
         });
@@ -68,13 +54,73 @@ public class UserUtil {
     //修改密码 旧密码，新密码
     public void updateUserPassword(String oldPwd,String newPwd){
         MyUser.updateCurrentUserPassword(oldPwd, newPwd, new UpdateListener() {
-
             @Override
             public void done(BmobException e) {
                 if(e==null){
                     //toast("密码修改成功，可以用新密码进行登录啦");
                 }else{
                     //toast("失败:" + e.getMessage());
+                }
+            }
+        });
+    }
+
+    //更改性别
+    public void updateUserSex(String sex) {
+        MyUser myUser = (MyUser)BmobUser.getCurrentUser();
+        myUser.setSex(sex);
+        myUser.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+
+            }
+        });
+    }
+
+    //更改昵称
+    public void updateUserNick(String nick) {
+        MyUser myUser = (MyUser)BmobUser.getCurrentUser();
+        myUser.setSex(nick);
+        myUser.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+
+            }
+        });
+    }
+
+    //更改个性签名
+    public void updateUserPI(String pi) {
+        MyUser myUser = (MyUser)BmobUser.getCurrentUser();
+        myUser.setPersonalityIntroduction(pi);
+        myUser.update(new UpdateListener() {
+            @Override
+            public void done(BmobException e) {
+
+            }
+        });
+    }
+
+    //更改照片
+    public void updateUserPic(final String pic) {
+        File file = new File(pic);
+        final BmobFile bmobFile_pic = new BmobFile(file);
+        bmobFile_pic.uploadblock(new UploadFileListener() {
+            @Override
+            public void done(BmobException e) {
+                if (e == null) {
+                    MyUser myUser = (MyUser) BmobUser.getCurrentUser();
+                    myUser.setPicture(pic);
+                    myUser.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String s, BmobException e) {
+                            if (e == null) {
+                                Log.d("bmob", "成功");
+                            } else {
+                                Log.i("bmob", "失败：" + e.getMessage() + "," + e.getErrorCode());
+                            }
+                        }
+                    });
                 }
             }
         });

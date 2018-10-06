@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#008B8B"
     android:orientation="vertical"
     tools:context=".modules.MainActivity">
 <FrameLayout
     android:layout_width="match_parent"
+
     android:layout_height="match_parent">
 <example.chaoyueteam.com.pocketsofanimals.util.ZoomImageView
     android:layout_marginTop="10dp"
@@ -34,4 +37,4 @@
         <!--android:layout_height="match_parent"/>-->
 
 </FrameLayout>
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>

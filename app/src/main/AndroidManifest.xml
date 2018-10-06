@@ -58,8 +58,13 @@
 
         <activity android:name=".modules.takephoto.ShowAnimalsActivity" />
         <activity android:name=".modules.takephoto.TakePhotoActivity" />
+
         <activity android:name=".modules.takephoto.NullAnimal" />
-        <activity android:name=".modules.takephoto.LoadingActivity"></activity>
+
+
+        <activity android:name=".modules.WelcomeActivity" />
+        <activity android:name=".modules.LoginActivity" />
+        <activity android:name=".modules.RegisterActivity"></activity>
     </application>
 
 </manifest>

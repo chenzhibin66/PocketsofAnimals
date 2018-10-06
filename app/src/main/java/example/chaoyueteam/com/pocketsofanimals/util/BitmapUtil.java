@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -111,8 +112,9 @@ public class BitmapUtil {
         canvas.restore();
         return  newBitmap;
     }
-    public void saveBitmapFile(Bitmap bitmap,String path) {
-        File file = new File(path);//将要保存图片的路径
+    public void saveBitmapFile(Bitmap bitmap,String path_s) {
+        File file = new File(path_s);//将要保存图片的路径
+        Log.d("BimapUtil","文件:"+path_s);
         try {
             BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
