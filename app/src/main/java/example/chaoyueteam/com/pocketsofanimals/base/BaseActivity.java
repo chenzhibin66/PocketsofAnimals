@@ -16,7 +16,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         //默认初始化
         Bmob.initialize(this, "e3f7e3dcd335515e9aa1040d7067bace");
 
-
     }
 
     protected abstract void initView(Bundle savedInstanceState);

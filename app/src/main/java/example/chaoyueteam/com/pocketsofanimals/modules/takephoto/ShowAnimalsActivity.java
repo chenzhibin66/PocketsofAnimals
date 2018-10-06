@@ -5,12 +5,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.db.Album;
+import example.chaoyueteam.com.pocketsofanimals.db.AnimalIntroduction;
+import example.chaoyueteam.com.pocketsofanimals.db.MyUser;
 import example.chaoyueteam.com.pocketsofanimals.image.Animal;
 import example.chaoyueteam.com.pocketsofanimals.speech.RandomStringGenerator;
 import example.chaoyueteam.com.pocketsofanimals.speech.Text2Audio;
 import example.chaoyueteam.com.pocketsofanimals.util.AlbumUtil;
+import example.chaoyueteam.com.pocketsofanimals.util.UserUtil;
 
 import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnimalBean;
 
@@ -39,7 +48,6 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                     Log.d("onCreate","path:"+path_imag);
                     Log.d("onCreate","name:"+animal.getResult().get(0).getName());
                     Log.d("onCreate","介绍:"+animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
