@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.File;
 import java.util.List;
@@ -20,8 +17,10 @@ import cn.bmob.v3.listener.UploadFileListener;
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.db.Album;
 import example.chaoyueteam.com.pocketsofanimals.image.Animal;
+
 import example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo;
 import example.chaoyueteam.com.pocketsofanimals.image.plant;
+
 import example.chaoyueteam.com.pocketsofanimals.speech.RandomStringGenerator;
 import example.chaoyueteam.com.pocketsofanimals.speech.Text2Audio;
 import example.chaoyueteam.com.pocketsofanimals.util.AlbumUtil;
@@ -47,10 +46,15 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                     String text = animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍");
                     String path_mp3 = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
                     AlbumUtil albumUtil = new AlbumUtil();
+
                     Album album = albumUtil.setAlbuma(path_imag,path_mp3,
                             animal.getResult().get(0).getName(),
                             animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
 
+
+                    albumUtil.setAlbuma(path_imag,path_mp3,path_imag,
+                            animal.getResult().get(0).getName(),
+                            animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
                     Log.d("onCreate","path:"+path_imag);
                     Log.d("onCreate","name:"+animal.getResult().get(0).getName());
                     Log.d("onCreate","介绍:"+animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
