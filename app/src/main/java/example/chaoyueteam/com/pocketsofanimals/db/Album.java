@@ -8,6 +8,9 @@ public class Album extends BmobObject {
     private String animalName;
     private BmobFile newAnimalImage;
     private BmobFile animalImage;
+
+    private String location;
+
     private String animalInformation;
     private BmobFile mp3File;
 

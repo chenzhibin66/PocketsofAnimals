@@ -1,33 +1,26 @@
 package example.chaoyueteam.com.pocketsofanimals.util;
 
-import android.content.Context;
+
+
 import android.util.Log;
-
 import java.io.File;
-import java.util.List;
-
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.LogInListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
-import example.chaoyueteam.com.pocketsofanimals.db.Album;
-import example.chaoyueteam.com.pocketsofanimals.db.AnimalIntroduction;
 import example.chaoyueteam.com.pocketsofanimals.db.MyUser;
 
 public class UserUtil {
 
     //注册 参数账号，密码，头像，性别，昵称，个性签名
-    public void registered(String username,String password,String pic,
-                           String sex,String nick,String personalityIntroduction){
+    public void registered(String username,String password,String pic, String sex,String nick,String personalityIntroduction){
         MyUser bu = new MyUser();
         bu.setUsername(username);
         bu.setPassword(password);
-        bu.setPic(pic);
+        bu.setPicture(pic);
         bu.setPersonalityIntroduction(personalityIntroduction);
         bu.setNick(nick);
         bu.setSex(sex);
@@ -51,6 +44,8 @@ public class UserUtil {
             public void done(MyUser user, BmobException e) {
                 if(user!=null){
                     Log.i("smile","用户登陆成功");
+                }else {
+
                 }
             }
         });
@@ -59,7 +54,6 @@ public class UserUtil {
     //修改密码 旧密码，新密码
     public void updateUserPassword(String oldPwd,String newPwd){
         MyUser.updateCurrentUserPassword(oldPwd, newPwd, new UpdateListener() {
-
             @Override
             public void done(BmobException e) {
                 if(e==null){
@@ -70,6 +64,7 @@ public class UserUtil {
             }
         });
     }
+
     //更改性别
     public void updateUserSex(String sex) {
         MyUser myUser = (MyUser)BmobUser.getCurrentUser();
@@ -115,7 +110,7 @@ public class UserUtil {
             public void done(BmobException e) {
                 if (e == null) {
                     MyUser myUser = (MyUser) BmobUser.getCurrentUser();
-                    myUser.setPic(pic);
+                    myUser.setPicture(pic);
                     myUser.save(new SaveListener<String>() {
                         @Override
                         public void done(String s, BmobException e) {

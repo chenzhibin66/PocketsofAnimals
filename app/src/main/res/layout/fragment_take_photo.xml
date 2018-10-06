@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#87ceeb"
+    android:background="@drawable/ic_main_background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -14,38 +14,43 @@
             android:id="@+id/take_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="70dp"
             android:src="@drawable/ic_take_photo" />
-
         <ImageView
             android:id="@+id/record_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="45dp"
-            android:layout_marginBottom="26dp"
+            android:layout_marginEnd="62dp"
+            android:layout_marginBottom="49dp"
             android:src="@drawable/ic_photo_record" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_recognize"
+            android:layout_below="@+id/record_photo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-49dp"
             android:textSize="20sp"
-            android:textColor="@android:color/white"
-            android:layout_below="@+id/take_photo"
-            android:layout_centerInParent="true"
-            android:padding="15dp"/>
+            android:textColor="#1627ab"
+            android:text="@string/title_recognize" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/import_album"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/ic_import"/>
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="34dp"
+            android:src="@drawable/ic_import" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,7 +59,7 @@
             android:layout_centerInParent="true"
             android:text="导入相册"
             android:textSize="20sp"
-            android:textColor="@android:color/white"
+            android:textColor="#1627ab"
             android:padding="15dp" />
     </RelativeLayout>
 </LinearLayout>
