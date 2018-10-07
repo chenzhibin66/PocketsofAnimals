@@ -58,14 +58,13 @@
 
         <activity android:name=".modules.takephoto.ShowAnimalsActivity" />
         <activity android:name=".modules.takephoto.TakePhotoActivity" />
-        <activity
-            android:name=".modules.MainActivity"
-             />
+        <activity android:name=".modules.MainActivity" />
         <activity android:name=".modules.LoginActivity" />
         <activity android:name=".modules.RegisterActivity" />
         <activity android:name=".modules.me.NickActtivity" />
         <activity android:name=".modules.me.SignatureActivity" />
-        <activity android:name=".modules.me.AlterPasswordActivity"></activity>
+        <activity android:name=".modules.me.AlterPasswordActivity" />
+        <activity android:name=".modules.discover.AnimalActivity"></activity>
     </application>
 
 </manifest>
