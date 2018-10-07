@@ -99,7 +99,8 @@ public class DiscoverFragment extends BaseFragment {
                     for (AnimalIntroduction animalIntroduction : object) {
                         String animalName = animalIntroduction.getAnimalname();
                         BmobFile animalPhoto = animalIntroduction.getAnimalPhoto();
-                        AnimalIntroduction animalIntroduction1 = new AnimalIntroduction(animalPhoto, animalName);
+                        String animalIntroduce =animalIntroduction.getIntroduce();
+                        AnimalIntroduction animalIntroduction1 = new AnimalIntroduction(animalPhoto, animalName,animalIntroduce);
                         mAnimals.add(animalIntroduction1);
                     }
 
