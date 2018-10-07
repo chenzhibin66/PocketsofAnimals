@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:orientation="vertical">
-    </LinearLayout>
+        android:orientation="vertical"></LinearLayout>
+
 
 
         <android.support.design.widget.BottomNavigationView
@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
-            android:background="?android:attr/windowBackground"
+            android:background="@drawable/navigation_bg"
             app:menu="@menu/navigation" />
-
 </LinearLayout>

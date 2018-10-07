@@ -74,9 +74,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="f3fadb" />
-                            <entry key="outputName" value="ic_left_back" />
-                            <entry key="sourceFile" value="D:\浏览器下载\import.svg" />
+                            <entry key="outputName" value="ic_im_user_message" />
+                            <entry key="sourceFile" value="D:\浏览器下载\im_user_message.svg" />
                           </map>
                         </option>
                       </PersistentState>

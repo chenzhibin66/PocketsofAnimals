@@ -2,54 +2,49 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="#efe6e6">
     <RelativeLayout
-        android:id="@+id/relayout_nick"
+        android:id="@+id/relayout_signature"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#68b5c2">
-
         <ImageView
             android:id="@+id/im_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_left_back" />
-
         <TextView
-            android:id="@+id/nick"
+            android:id="@+id/signature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="个性签名"
             android:textColor="@android:color/white"
             android:textSize="20dp" />
-
         <TextView
-            android:id="@+id/save_nick"
+            android:id="@+id/save_signature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginLeft="110dp"
-            android:layout_toRightOf="@+id/nick"
+            android:layout_toRightOf="@+id/signature"
             android:text="保存"
             android:textColor="@android:color/white"
             android:textSize="20dp" />
     </RelativeLayout>
-
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="80dp">
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="80dp"
+        android:background="#ffffff">
         <EditText
-            android:id="@+id/alter_nick"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:maxLength="70"
-            android:textSize="20dp"
-            />
-
+            android:id="@+id/alter_signature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="18"
+            android:textSize="20dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,8 +52,6 @@
             android:layout_alignParentBottom="true"
             android:paddingBottom="10dp"
             android:paddingEnd="10dp"
-            android:text="70" />
-
+            android:text="18" />
     </RelativeLayout>
-
 </RelativeLayout>

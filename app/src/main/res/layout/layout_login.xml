@@ -90,20 +90,6 @@
                 android:textColor="#353535"
                 android:textSize="16sp" />
         </RelativeLayout>
-
-        <RelativeLayout
-            android:padding="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <CheckBox
-                android:id="@+id/remember_pw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13dp"
-                android:text="记住密码"/>
-
-        </RelativeLayout>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

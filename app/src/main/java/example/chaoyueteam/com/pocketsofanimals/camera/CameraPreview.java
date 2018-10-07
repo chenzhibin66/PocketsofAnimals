@@ -200,8 +200,10 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
                 camera.setParameters(p);
             } catch (Exception e) {
                 android.hardware.Camera.Size previewSize = findBestPreviewSize(p);
-                p.setPreviewSize(previewSize.width, previewSize.height);
-                p.setPictureSize(previewSize.width, previewSize.height);
+//                p.setPreviewSize(previewSize.width, previewSize.height);
+                p.setPreviewSize(2048, 1536);
+//                p.setPictureSize(previewSize.width, previewSize.height);
+                p.setPictureSize(2048, 1536);
                 camera.setParameters(p);
             }
         }

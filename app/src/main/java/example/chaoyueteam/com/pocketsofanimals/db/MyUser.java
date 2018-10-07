@@ -1,47 +1,45 @@
 package example.chaoyueteam.com.pocketsofanimals.db;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 
 public class MyUser extends BmobUser {
+
     private String sex;
     private String nick;
-    private String personalityIntroduction;
-    private String picture;
+    private String signature;
+    private BmobFile picture;
+
+    public String getSex() {
+        return sex;
+    }
 
     public void setSex(String sex) {
         this.sex = sex;
     }
 
-
-    public String getSex() {
-        return this.sex;
-    }
-
     public String getNick() {
-        return this.nick;
+        return nick;
     }
-
-    public String getPersonalityIntroduction() {
-        return personalityIntroduction;
-    }
-
 
     public void setNick(String nick) {
         this.nick = nick;
     }
 
-    public void setPersonalityIntroduction(String personalityIntroduction) {
-        this.personalityIntroduction = personalityIntroduction;
+    public String getSignature() {
+        return signature;
     }
 
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
 
-    public String getPicture() {
+    public BmobFile getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(BmobFile picture) {
         this.picture = picture;
-
     }
 }
 
