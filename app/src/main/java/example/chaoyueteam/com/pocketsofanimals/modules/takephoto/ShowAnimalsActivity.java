@@ -4,17 +4,22 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import android.widget.Toast;
@@ -41,7 +46,7 @@ import static android.provider.MediaStore.Images.Media.insertImage;
 import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnimalBean;
 import static example.chaoyueteam.com.pocketsofanimals.modules.takephoto.TakePhotoActivity.IMAGE_URI;
 
-public class ShowAnimalsActivity extends AppCompatActivity {
+public class ShowAnimalsActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private static final String TAG = "ShowAnimalsActivity";
@@ -68,14 +73,25 @@ public class ShowAnimalsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_animals);
         final FloatingActionButton floatingActionButton = findViewById(R.id.fb);
         final ZoomImageView zoomImageView = findViewById(R.id.show_animals);
-        Glide.with(getApplicationContext()).load(R.drawable.loading5).into(zoomImageView);
-
-        final ExecutorService executorService = Executors.newSingleThreadExecutor();
+        final ImageView imageView = findViewById(R.id.show_animals);
         Glide.with(getApplicationContext()).load(R.drawable.loading).into(zoomImageView);
+        android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
+                startActivity(intent1);
+                finish();
+            }
+        });
+
+        //Glide.with(getApplicationContext()).load(R.drawable.loading5).into(zoomImageView);
+        final ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                Intent intent = getIntent();
+                final Intent intent = getIntent();
 
                 path_imag= intent.getStringExtra("path");
 
@@ -112,17 +128,17 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                     Log.d("onCreate","path_new:"+path_new);
                     Log.d("onCreate","name:"+animal.getResult().get(0).getName());
                     Log.d("onCreate","介绍:"+animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
-                    AlbumUtil albumUtil = new AlbumUtil();
-                    albumUtil.setAlbuma(path_imag,path_mp3,path_new,
-                            animal.getResult().get(0).getName(),
-                            animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
+//                    AlbumUtil albumUtil = new AlbumUtil();
+//                    albumUtil.setAlbuma(path_imag,path_mp3,path_new,
+//                            animal.getResult().get(0).getName(),
+//                            animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
                 } catch (Exception e) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             Intent intent1 = new Intent(ShowAnimalsActivity.this,NullAnimal.class);
-                            intent1.putExtra("paths",path);
                             startActivity(intent1);
+                            finish();
                         }
                     });
                 }
@@ -143,12 +159,12 @@ public class ShowAnimalsActivity extends AppCompatActivity {
                                 }
                             }
                         });
+
                     }
                 });
             }
         });
         executorService.shutdown();
-
     }
 
     private Uri insertImage(ContentResolver cr, String name, long dateTaken,
@@ -203,4 +219,29 @@ public class ShowAnimalsActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+                Intent intent2 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
+                startActivity(intent2);
+                finish();
+        };
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.start_do:{
+                if(!mediaPlayer.isPlaying()){
+                    mediaPlayer.start();
+                }else {
+                    mediaPlayer.pause();
+                }
+            }
+        }
+        return true;
+    }
 }

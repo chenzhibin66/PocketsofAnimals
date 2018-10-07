@@ -5,4 +5,5 @@
     <string name="title_discover">发现</string>
     <string name="title_me">我</string>
     <string name="title_recognize">识别动物</string>
+    <string name="title_activity_null">NullActivity</string>
 </resources>

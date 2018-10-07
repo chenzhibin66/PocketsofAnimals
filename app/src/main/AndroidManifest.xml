@@ -35,18 +35,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!-- 填写自己的 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="SfPUaG5XWWImOYVGz2zPGWEZX4vn3nDo" />
+
         <activity
             android:name=".modules.WelcomeActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -60,6 +64,7 @@
         <activity android:name=".modules.RegisterActivity" />
         <activity android:name=".modules.me.NickActtivity" />
         <activity android:name=".modules.me.SignatureActivity" />
-        <activity android:name=".modules.me.AlterPasswordActivity"></activity>
+        <activity android:name=".modules.me.AlterPasswordActivity" />
     </application>
+
 </manifest>

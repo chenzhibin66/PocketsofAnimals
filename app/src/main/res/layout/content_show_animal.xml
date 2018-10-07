@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<android.support.v4.widget.DrawerLayout
+    tools:showIn="@layout/activity_null_animal"
+    tools:context=".modules.takephoto.NullAnimal"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <example.chaoyueteam.com.pocketsofanimals.util.ZoomImageView
+        android:id="@+id/show_animals"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp" />
+    <FrameLayout
+        android:layout_marginTop="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="330dp"
+            android:layout_gravity="bottom|end"
+            android:id="@+id/fb"
+            app:fabSize="mini"
+            android:src="@drawable/start"
+            android:backgroundTint="@color/white"
+            />
+    </FrameLayout>
+</android.support.v4.widget.DrawerLayout>
