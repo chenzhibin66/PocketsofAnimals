@@ -20,8 +20,29 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/text"
+        android:textSize="20dp"
+        android:text="没有检测到动物"
+        android:background="@drawable/find_no_animals"
+        />
+</FrameLayout>
+    <!--<TextView-->
 
-    <include layout="@layout/content_null" />
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="100dp"-->
+        <!--android:layout_marginTop="300dp"-->
+        <!--android:textSize="28dp"-->
+        <!--android:text="没有检测到动物" />-->
+
+    <!--<include layout="@layout/content_null" />-->
 
     <!--<FrameLayout-->
         <!--android:layout_width="match_parent"-->

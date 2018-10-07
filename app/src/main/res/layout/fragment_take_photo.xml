@@ -24,8 +24,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="78dp"
-            android:layout_marginBottom="212dp"
-            android:src="@drawable/ic_photo_record" />
+            android:layout_marginBottom="212dp" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import android.widget.Toast;
@@ -120,12 +121,16 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
 
                     Log.d("onCreate","成功");
                     path_mp3 = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
-
                     Log.d("onCreate","path:"+path_imag);
                     Log.d("onCreate","path_mp3:"+path_mp3);
                     Log.d("onCreate","path_new:"+path_new);
                     Log.d("onCreate","name:"+animal.getResult().get(0).getName());
                     Log.d("onCreate","介绍:"+animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
+//                    texView.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            }
+//                    });
 //                    AlbumUtil albumUtil = new AlbumUtil();
 //                    albumUtil.setAlbuma(path_imag,path_mp3,path_new,
 //                            animal.getResult().get(0).getName(),

@@ -30,7 +30,6 @@ import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.base.BaseFragment;
 import example.chaoyueteam.com.pocketsofanimals.db.MyUser;
 import example.chaoyueteam.com.pocketsofanimals.modules.LoginActivity;
-import example.chaoyueteam.com.pocketsofanimals.modules.MainActivity;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
@@ -100,10 +99,10 @@ public class MeFragment extends BaseFragment {
     }
 
     private void setData() {
-        Glide.with(this).load(R.drawable.head)
+        Glide.with(this).load(R.drawable.ic_head)
                 .bitmapTransform(new BlurTransformation(getContext(), 25), new CenterCrop(getContext()))
                 .into(hBack);
-        Glide.with(this).load(R.drawable.head)
+        Glide.with(this).load(R.drawable.ic_head)
                 .bitmapTransform(new CropCircleTransformation(getContext())).into(hHead);
     }
 

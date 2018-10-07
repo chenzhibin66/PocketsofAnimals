@@ -12,13 +12,23 @@ public class AnimalIntroduction extends BmobObject implements MultiItemEntity, S
     public static final int TYPE_PICTURE=1;
     private BmobFile animalPhoto;
     private String AnimalName;
+    private String introduce;
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
 
     private int type;
 
 
-    public AnimalIntroduction(BmobFile animalPhoto,String AnimalName){
+    public AnimalIntroduction(BmobFile animalPhoto,String AnimalName,String introduce){
         this.animalPhoto=animalPhoto;
         this.AnimalName=AnimalName;
+        this.introduce=introduce;
         this.type=1;
     }
 

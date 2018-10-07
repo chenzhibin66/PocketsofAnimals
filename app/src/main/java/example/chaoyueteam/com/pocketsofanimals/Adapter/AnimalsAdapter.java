@@ -1,6 +1,8 @@
 package example.chaoyueteam.com.pocketsofanimals.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,8 +17,10 @@ import java.util.List;
 import butterknife.BindView;
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.db.AnimalIntroduction;
+import example.chaoyueteam.com.pocketsofanimals.modules.discover.AnimalActivity;
 
 public class AnimalsAdapter extends BaseMultiItemQuickAdapter<AnimalIntroduction, BaseViewHolder> {
+    private Intent intent;
 
 
     @BindView(R.id.animal_picture)
@@ -33,7 +37,7 @@ public class AnimalsAdapter extends BaseMultiItemQuickAdapter<AnimalIntroduction
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, AnimalIntroduction animalIntroduction) {
+    protected void convert(BaseViewHolder helper, final AnimalIntroduction animalIntroduction) {
         switch (helper.getItemViewType()){
                case AnimalIntroduction.TYPE_PICTURE:
                    helper.setText(R.id.animal_name,animalIntroduction.getAnimalname());
@@ -41,6 +45,18 @@ public class AnimalsAdapter extends BaseMultiItemQuickAdapter<AnimalIntroduction
                    Glide.with(mContext).load(animalIntroduction.getAnimalPhoto().getUrl()).into(imageView);
                    break;
         }
+        View view=helper.getView(R.id.whole_layout);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent=new Intent(mContext,AnimalActivity.class);
+                intent.putExtra(AnimalActivity.ANIMAL_NAME,animalIntroduction.getAnimalname());
+                intent.putExtra(AnimalActivity.ANIMAL_IMAGE_ID,animalIntroduction.getAnimalPhoto().getUrl());
+                intent.putExtra(AnimalActivity.ANIMAL_INTRODUCE,animalIntroduction.getIntroduce());
+                Log.d(TAG, "onClick: "+animalIntroduction.getIntroduce());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
