@@ -3,6 +3,7 @@ package example.chaoyueteam.com.pocketsofanimals.modules;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +49,15 @@ public class RegisterActivity extends AppCompatActivity {
         MyUser bu = new MyUser();
         bu.setUsername(etUsertel.getText().toString());
         bu.setPassword(etCode.getText().toString());
+        bu.setNick(null);
+        bu.setPicture(null);
+        bu.setSignature(null);
+        bu.setSex(null);
+        // 非空验证
+        if (TextUtils.isEmpty(etUsertel.getText().toString()) || TextUtils.isEmpty(etCode.getText().toString())) {
+            Toast.makeText(RegisterActivity.this, "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
         bu.signUp(new SaveListener<MyUser>() {
             @Override
             public void done(MyUser s, BmobException e) {
@@ -65,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     @OnClick(R.id.return_login)
     public void onViewClicked() {
-        Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }

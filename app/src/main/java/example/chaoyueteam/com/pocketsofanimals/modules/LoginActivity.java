@@ -23,8 +23,8 @@ import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.db.MyUser;
 
 public class LoginActivity extends AppCompatActivity {
-    FileOutputStream mFileOutputStream=null;
-    File file=null;
+    FileOutputStream mFileOutputStream = null;
+    File file = null;
     @BindView(R.id.btn_login)
     Button btnLogin;
     @BindView(R.id.tv_sign)
@@ -33,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText username;
     @BindView(R.id.password)
     EditText password;
-    @BindView(R.id.remember_pw)
-    CheckBox rememberPw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +53,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 logIn(username.getText().toString(), password.getText().toString());
-
-
             }
         });
     }
 
     public void logIn(String username, String password) {
         BmobUser.loginByAccount(username, password, new LogInListener<MyUser>() {
-
             @Override
             public void done(MyUser user, BmobException e) {
-                if (user != null) {
+                if (e == null) {
                     user = BmobUser.getCurrentUser(MyUser.class);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);

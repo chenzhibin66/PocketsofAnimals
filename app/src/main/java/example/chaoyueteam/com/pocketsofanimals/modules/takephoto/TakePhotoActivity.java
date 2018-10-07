@@ -47,11 +47,10 @@ import java.io.OutputStream;
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.camera.CameraPreview;
 import example.chaoyueteam.com.pocketsofanimals.camera.FocusView;
+import example.chaoyueteam.com.pocketsofanimals.modules.MainActivity;
 import example.chaoyueteam.com.pocketsofanimals.utils.Utils;
 
 public class TakePhotoActivity extends AppCompatActivity implements CameraPreview.OnCameraStatusListener, SensorEventListener {
-
-
     //true:横屏   false:竖屏
     public static final boolean isTransverse = true;
 
@@ -106,8 +105,7 @@ public class TakePhotoActivity extends AppCompatActivity implements CameraPrevie
 
         mCropperLayout = (LinearLayout) findViewById(R.id.cropper_layout);
         mCropImageView = (CropImageView) findViewById(R.id.CropImageView);
-    /*    CropImageView.setGuidelines(2);*/
-
+       /* mCropImageView.setGuidelines(2);*/
 
         mCameraPreview.setFocusView(focusView);
         mCameraPreview.setOnCameraStatusListener(this);
@@ -187,11 +185,11 @@ public class TakePhotoActivity extends AppCompatActivity implements CameraPrevie
                     break;
                 case R.id.btn_album: //相册
                     Intent intent = new Intent();
-                    //开启Pictures画面Type设定为image
+                    /* 开启Pictures画面Type设定为image */
                     intent.setType("image/*");
-                    //使用Intent.ACTION_GET_CONTENT这个Action
+                    /* 使用Intent.ACTION_GET_CONTENT这个Action */
                     intent.setAction(Intent.ACTION_GET_CONTENT);
-                    // 取得相片后返回本画面
+                    /* 取得相片后返回本画面 */
                     startActivityForResult(intent, 1);
                     break;
             }

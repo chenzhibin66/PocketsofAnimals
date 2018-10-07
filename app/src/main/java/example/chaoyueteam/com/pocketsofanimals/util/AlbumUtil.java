@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.util.List;
+
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
@@ -16,6 +17,7 @@ import example.chaoyueteam.com.pocketsofanimals.db.Album;
 public class AlbumUtil {
 
     private Album album;
+
     public Album setAlbuma(String path_imag, String path_mp3, final String annimalName,
                            final String animalIformation) {
         File file_image = new File(path_imag);
@@ -54,8 +56,8 @@ public class AlbumUtil {
         return album;
     }
 
-    public void setAlbuma(String path_imag, String path_mp3,String path_newimage,
-                          final String annimalName,final String animalIformation) {
+    public void setAlbuma(String path_imag, String path_mp3, String path_newimage,
+                          final String annimalName, final String animalIformation) {
         File file_image = new File(path_imag);
         File file_mp3 = new File(path_mp3);
         File file_newimage = new File(path_newimage);
@@ -66,7 +68,7 @@ public class AlbumUtil {
         bmobFile_newImage.uploadblock(new UploadFileListener() {
             @Override
             public void done(BmobException e) {
-                bmobFile_imag.uploadblock(new UploadFileListener(){
+                bmobFile_imag.uploadblock(new UploadFileListener() {
                     @Override
                     public void done(BmobException e) {
                         if (e == null) {

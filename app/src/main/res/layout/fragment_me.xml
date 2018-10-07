@@ -9,54 +9,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F2F2F2">
+        android:background="#eae4e4">
 
         <ImageView
             android:id="@+id/h_back"
             android:layout_width="match_parent"
             android:layout_height="180dp" />
-
         <ImageView
             android:id="@+id/h_head"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_centerInParent="true" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/h_back"
-            android:layout_marginBottom="20dp">
-
-            <ImageView
-                android:id="@+id/user_line"
-                android:layout_width="1dp"
-                android:layout_height="25dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="15dp"
-                android:background="@android:color/white" />
-
-            <TextView
-                android:id="@+id/user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/user_line"
-                android:text="czb"
-                android:textColor="@android:color/white"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/user_tel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@id/user_line"
-                android:text="15903462872"
-                android:textColor="@android:color/white"
-                android:textSize="17sp" />
-        </RelativeLayout>
     </RelativeLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,22 +28,19 @@
         android:orientation="vertical"
         android:padding="10dp"
         android:showDividers="middle">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#FFF"
             android:paddingLeft="15dp">
-
             <ImageView
                 android:id="@+id/im_user"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:src="@drawable/ic_user" />
-
             <TextView
-                android:id="@+id/my_name"
+                android:id="@+id/my_nick"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_toRightOf="@+id/im_user"
@@ -87,39 +48,31 @@
                 android:paddingTop="15dp"
                 android:text="昵称"
                 android:textSize="16dp" />
-
             <LinearLayout
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
                 <TextView
+                    android:id="@+id/show_nick"
                     android:layout_width="70dp"
                     android:layout_height="50dp"
-                    android:alpha="128"
-                    android:gravity="center"
-                    android:text="czb" />
+                    android:alpha="0.6"
+                    android:gravity="center" />
             </LinearLayout>
-
-
         </RelativeLayout>
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#FFF"
             android:paddingLeft="15dp">
-
             <ImageView
                 android:id="@+id/im_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:src="@drawable/ic_sex" />
-
             <TextView
                 android:id="@+id/user_sex"
                 android:layout_width="match_parent"
@@ -129,37 +82,31 @@
                 android:paddingTop="15dp"
                 android:text="性别"
                 android:textSize="16dp" />
-
             <LinearLayout
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
                 <TextView
+                    android:id="@+id/show_sex"
                     android:layout_width="70dp"
                     android:layout_height="50dp"
-                    android:alpha="128"
-                    android:gravity="center"
-                    android:text="男" />
+                    android:alpha="0.6"
+                    android:gravity="center" />
             </LinearLayout>
         </RelativeLayout>
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#FFF"
             android:paddingLeft="15dp">
-
             <ImageView
                 android:id="@+id/im_signature"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:src="@drawable/ic_persionality" />
-
             <TextView
                 android:id="@+id/my_signature"
                 android:layout_width="match_parent"
@@ -169,37 +116,32 @@
                 android:paddingTop="15dp"
                 android:text="个性签名"
                 android:textSize="16dp" />
-
-            <LinearLayout
-                android:layout_width="100dp"
+            <RelativeLayout
+                android:layout_width="250dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
+                android:gravity="center_vertical">
                 <TextView
-                    android:layout_width="70dp"
+                    android:id="@+id/show_signature"
+                    android:layout_width="200dp"
                     android:layout_height="50dp"
-                    android:alpha="128"
-                    android:gravity="center"
-                    android:text="我好帅" />
-            </LinearLayout>
+                    android:layout_alignParentRight="true"
+                    android:maxLines="1"
+                    android:alpha="0.6"
+                    android:gravity="center" />
+            </RelativeLayout>
         </RelativeLayout>
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#FFF"
             android:paddingLeft="15dp">
-
             <ImageView
                 android:id="@+id/im_alter_pw"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:src="@drawable/ic_alter_pw" />
-
             <TextView
                 android:id="@+id/alter_pw"
                 android:layout_width="match_parent"
@@ -211,21 +153,17 @@
                 android:textSize="16dp" />
 
         </RelativeLayout>
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#FFF"
             android:paddingLeft="15dp">
-
             <ImageView
                 android:id="@+id/im_version"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:src="@drawable/ic_version" />
-
             <TextView
                 android:id="@+id/my_version"
                 android:layout_width="match_parent"
@@ -235,29 +173,24 @@
                 android:paddingTop="15dp"
                 android:text="版本"
                 android:textSize="16dp" />
-
             <LinearLayout
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
                 <TextView
                     android:layout_width="70dp"
                     android:layout_height="50dp"
-                    android:alpha="128"
+                    android:alpha="0.6"
                     android:gravity="center"
                     android:text="1.0" />
             </LinearLayout>
-
         </RelativeLayout>
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="80dp"
             android:paddingVertical="10dp">
-
             <Button
                 android:id="@+id/back_login"
                 android:layout_width="match_parent"
@@ -267,10 +200,6 @@
                 android:background="@drawable/btn_green"
                 android:text="退出当前账号"
                 android:textSize="17sp" />
-
         </RelativeLayout>
-
     </LinearLayout>
-
-
 </LinearLayout>
