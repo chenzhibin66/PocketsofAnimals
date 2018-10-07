@@ -113,7 +113,6 @@ public class MeFragment extends BaseFragment {
             case R.id.my_nick:
                 Intent intent = new Intent(getActivity(), NickActtivity.class);
                 startActivity(intent);
-                getActivity().finish();
                 break;
             case R.id.user_sex:
                 showSexChooseDialog();
@@ -121,12 +120,10 @@ public class MeFragment extends BaseFragment {
             case R.id.my_signature:
                 Intent intent1 = new Intent(getActivity(), SignatureActivity.class);
                 startActivity(intent1);
-                getActivity().finish();
                 break;
             case R.id.alter_pw:
                 Intent intent2 = new Intent(getActivity(), AlterPasswordActivity.class);
                 startActivity(intent2);
-                getActivity().finish();
                 break;
             case R.id.back_login:
                 BmobUser.logOut();//清除缓存用户对象
@@ -162,11 +159,10 @@ public class MeFragment extends BaseFragment {
         });
         builder3.show();// 让弹出框显示
     }
-
     Handler mTimeHandler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             if (msg.what == 0) {
-                showSex.setText(myUser.getSex()); //View.ininvalidate()
+                showSex.setText(myUser.getSex());
                 sendEmptyMessageDelayed(0, 1000);
             }
         }
