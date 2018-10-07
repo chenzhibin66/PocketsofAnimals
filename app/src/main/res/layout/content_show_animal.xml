@@ -21,17 +21,17 @@
         android:layout_marginTop="55dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="500dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="330dp"
-            android:layout_gravity="bottom|end"
-            android:id="@+id/fb"
-            app:fabSize="mini"
-            android:src="@drawable/start"
-            android:backgroundTint="@color/white"
-            />
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="500dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginLeft="330dp"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:id="@+id/fb"-->
+            <!--app:fabSize="mini"-->
+            <!--android:src="@drawable/start"-->
+            <!--android:backgroundTint="@color/white"-->
+            <!--/>-->
     </FrameLayout>
 </android.support.v4.widget.DrawerLayout>

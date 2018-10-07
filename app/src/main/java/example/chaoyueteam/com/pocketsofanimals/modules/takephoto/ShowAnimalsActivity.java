@@ -47,8 +47,6 @@ import static example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo.getAnima
 import static example.chaoyueteam.com.pocketsofanimals.modules.takephoto.TakePhotoActivity.IMAGE_URI;
 
 public class ShowAnimalsActivity extends AppCompatActivity implements View.OnClickListener {
-
-
     private static final String TAG = "ShowAnimalsActivity";
     public static final String PATH = Environment.getExternalStorageDirectory().toString() + "/AndroidMedia/New_animal_picture/";
     Album album;
@@ -71,7 +69,7 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_animals);
-        final FloatingActionButton floatingActionButton = findViewById(R.id.fb);
+//        final FloatingActionButton floatingActionButton = findViewById(R.id.fb);
         final ZoomImageView zoomImageView = findViewById(R.id.show_animals);
         final ImageView imageView = findViewById(R.id.show_animals);
         Glide.with(getApplicationContext()).load(R.drawable.loading).into(zoomImageView);
@@ -145,20 +143,19 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
                         zoomImageView.setImageBitmap(bitmap1);
                         initMediaPlayer(mp3_path);
-
-                        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if(!mediaPlayer.isPlaying()){
-                                    mediaPlayer.start();
-                                }else {
-                                    mediaPlayer.pause();
-                                }
-                            }
-                        });
+//
+//                        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                if(!mediaPlayer.isPlaying()){
+//                                    mediaPlayer.start();
+//                                }else {
+//                                    mediaPlayer.pause();
+//                                }
+//                            }
+//                        });
 
                     }
                 });
