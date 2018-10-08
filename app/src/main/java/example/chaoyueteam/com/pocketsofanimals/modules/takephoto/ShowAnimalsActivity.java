@@ -138,6 +138,7 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            zoomImageView.setImageBitmap(R.drawable.find_no_animals);
                         }
                     });
                 }
