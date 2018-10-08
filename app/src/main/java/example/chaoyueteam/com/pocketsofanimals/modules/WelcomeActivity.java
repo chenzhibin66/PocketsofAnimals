@@ -25,7 +25,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 if (bmobUser != null) {
                     Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                     startActivity(intent);
-                    Log.d(TAG, "onCreate: intent0");
                     Log.d(TAG, "onCreate: "+BmobUser.getCurrentUser().getUsername());
                 } else {
                     Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);

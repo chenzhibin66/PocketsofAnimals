@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -65,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     user = BmobUser.getCurrentUser(MyUser.class);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "账号或密码输入错误，请重新输入！", Toast.LENGTH_SHORT).show();
                 }

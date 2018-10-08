@@ -74,7 +74,6 @@ public class MeFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
-        mTimeHandler.sendEmptyMessageDelayed(0, 1000);
         setData();
         return view;
     }
@@ -89,6 +88,7 @@ public class MeFragment extends BaseFragment {
         MyUser myUser = BmobUser.getCurrentUser(MyUser.class);
         showNick.setText(myUser.getNick());
         showSignature.setText(myUser.getSignature());
+        showSex.setText(myUser.getSex());
 
     }
 
@@ -127,6 +127,7 @@ public class MeFragment extends BaseFragment {
             case R.id.back_login:
                 BmobUser.logOut();//清除缓存用户对象
                 BmobUser currentUser = BmobUser.getCurrentUser();//现在的currentuser是null
+                Log.d(TAG, "onViewClicked: "+BmobUser.getCurrentUser());
                 Intent intent3 = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent3);
                 getActivity().finish();
@@ -146,7 +147,14 @@ public class MeFragment extends BaseFragment {
                     @Override
                     public void done(BmobException e) {
                         if (e == null) {
-
+                            showSex.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.d(TAG, "run: "+myUser.getSex());
+                                    showSex.setText(myUser.getSex());
+                                    Log.d(TAG, "run1: "+showSex.getText());
+                                }
+                            });
                         } else {
                             Toast.makeText(getContext(), "更新失败！" + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -158,12 +166,4 @@ public class MeFragment extends BaseFragment {
         });
         builder3.show();// 让弹出框显示
     }
-    Handler mTimeHandler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            if (msg.what == 0) {
-                showSex.setText(myUser.getSex());
-                sendEmptyMessageDelayed(0, 1000);
-            }
-        }
-    };
 }
