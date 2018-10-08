@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -75,10 +76,14 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
         final ImageView imageView = findViewById(R.id.show_animals);
         Glide.with(getApplicationContext()).load(R.drawable.loading).into(zoomImageView);
         android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
+        if (toolbar!=null){
+            toolbar.setTitle("");
+        }
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.pause();
                 Intent intent1 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
                 startActivity(intent1);
                 finish();
@@ -106,7 +111,6 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
                     Text2Audio text2Audio = new Text2Audio();
                     String text = animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍");
                     mp3_path = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
-
                     long dateTaken = System.currentTimeMillis();
 
                     String filename = DateFormat.format("yyyy-MM-dd kk.mm.ss", dateTaken).toString() + ".jpg";
@@ -120,7 +124,6 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
                     bitmapUtil.saveBitmapFile(bitmap1,path_new);
 
                     Log.d("onCreate","成功");
-                    path_mp3 = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
                     Log.d("onCreate","path:"+path_imag);
                     Log.d("onCreate","path_mp3:"+path_mp3);
                     Log.d("onCreate","path_new:"+path_new);
@@ -223,10 +226,10 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-                Intent intent2 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
+               /* Intent intent2 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
                 startActivity(intent2);
-                finish();
-        };
+                finish();*/
+        }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar,menu);
