@@ -73,7 +73,7 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
 //        final FloatingActionButton floatingActionButton = findViewById(R.id.fb);
         final ZoomImageView zoomImageView = findViewById(R.id.show_animals);
         final ImageView imageView = findViewById(R.id.show_animals);
-        Glide.with(getApplicationContext()).load(R.drawable.loading).into(zoomImageView);
+        Glide.with(getApplicationContext()).load(R.drawable.loading2).into(zoomImageView);
         android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -120,7 +120,6 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
                     bitmapUtil.saveBitmapFile(bitmap1,path_new);
 
                     Log.d("onCreate","成功");
-                    path_mp3 = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
                     Log.d("onCreate","path:"+path_imag);
                     Log.d("onCreate","path_mp3:"+path_mp3);
                     Log.d("onCreate","path_new:"+path_new);
@@ -139,9 +138,6 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent1 = new Intent(ShowAnimalsActivity.this,NullAnimal.class);
-                            startActivity(intent1);
-                            finish();
                         }
                     });
                 }

@@ -51,7 +51,7 @@ import example.chaoyueteam.com.pocketsofanimals.modules.MainActivity;
 import example.chaoyueteam.com.pocketsofanimals.utils.Utils;
 
 public class TakePhotoActivity extends AppCompatActivity implements CameraPreview.OnCameraStatusListener, SensorEventListener {
-    //true:横屏   false:竖屏
+    //t  falsrue:横屏 e:竖屏
     public static final boolean isTransverse = true;
 
 
