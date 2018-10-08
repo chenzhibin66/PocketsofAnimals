@@ -116,8 +116,8 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
 //                width = getWidth() / 1;
 //                height = getHeight() / 1;
 //            }
-            width = getWidth()/20;
-            height = getHeight()/20;
+            width = getWidth()/1;
+            height = getHeight()/1;
             //得到我们的图片，以及宽和高
             Drawable drawable = getDrawable();
             if(drawable == null) {

@@ -8,12 +8,14 @@ import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Looper;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
@@ -31,11 +33,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+
 import example.chaoyueteam.com.pocketsofanimals.R;
 import example.chaoyueteam.com.pocketsofanimals.db.Album;
 import example.chaoyueteam.com.pocketsofanimals.image.Animal;
+import example.chaoyueteam.com.pocketsofanimals.image.AnimalDemo;
 import example.chaoyueteam.com.pocketsofanimals.speech.RandomStringGenerator;
 import example.chaoyueteam.com.pocketsofanimals.speech.Text2Audio;
 import example.chaoyueteam.com.pocketsofanimals.util.AlbumUtil;
@@ -52,8 +60,9 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
     public static final String PATH = Environment.getExternalStorageDirectory().toString() + "/AndroidMedia/New_animal_picture/";
     Album album;
     private MediaPlayer mediaPlayer = new MediaPlayer();
+    final  String access_token = "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873";
 
-    Animal animal;
+    Animal animal,animaldemo;
     AlbumUtil albumUtil;
     Bitmap bitmap1;
 
@@ -62,30 +71,34 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
     String path;
     Bitmap bitmap;
 
-    String path_imag;
+    //String path_imag;
     String path_mp3;
+    String text;
+
+    static String path_imag;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_animals);
+        Intent intent = getIntent();
+        path_imag = intent.getStringExtra("path");
 //        final FloatingActionButton floatingActionButton = findViewById(R.id.fb);
         final ZoomImageView zoomImageView = findViewById(R.id.show_animals);
         final ImageView imageView = findViewById(R.id.show_animals);
-        Glide.with(getApplicationContext()).load(R.drawable.loading2).into(zoomImageView);
+
         android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.pause();
                 Intent intent1 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
                 startActivity(intent1);
                 finish();
             }
         });
-
-        //Glide.with(getApplicationContext()).load(R.drawable.loading5).into(zoomImageView);
         final ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
             @Override
@@ -125,19 +138,17 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
                     Log.d("onCreate","path_new:"+path_new);
                     Log.d("onCreate","name:"+animal.getResult().get(0).getName());
                     Log.d("onCreate","介绍:"+animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
-//                    texView.post(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            }
-//                    });
-//                    AlbumUtil albumUtil = new AlbumUtil();
-//                    albumUtil.setAlbuma(path_imag,path_mp3,path_new,
-//                            animal.getResult().get(0).getName(),
-//                            animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
+
                 } catch (Exception e) {
+                e.printStackTrace();
+                    Looper.prepare();
+                    Toast.makeText(getApplicationContext(),"没有检测到动物",Toast.LENGTH_LONG).show();
+                    Looper.loop();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            Intent intent1 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
+                            startActivity(intent1);
                         }
                     });
                 }
@@ -146,18 +157,6 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
                     public void run() {
                         zoomImageView.setImageBitmap(bitmap1);
                         initMediaPlayer(mp3_path);
-//
-//                        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                if(!mediaPlayer.isPlaying()){
-//                                    mediaPlayer.start();
-//                                }else {
-//                                    mediaPlayer.pause();
-//                                }
-//                            }
-//                        });
-
                     }
                 });
             }
