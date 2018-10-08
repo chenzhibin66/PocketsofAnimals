@@ -59,6 +59,8 @@
                     android:layout_width="70dp"
                     android:layout_height="50dp"
                     android:alpha="0.6"
+                    android:maxLines="1"
+                    android:maxLength="6"
                     android:gravity="center" />
             </LinearLayout>
         </RelativeLayout>
@@ -93,6 +95,7 @@
                     android:layout_width="70dp"
                     android:layout_height="50dp"
                     android:alpha="0.6"
+                    android:maxLines="1"
                     android:gravity="center" />
             </LinearLayout>
         </RelativeLayout>
