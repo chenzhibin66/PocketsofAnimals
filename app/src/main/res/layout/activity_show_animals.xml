@@ -16,8 +16,15 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:navigationIcon="@drawable/ic_left_back"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="识别结果"
+                android:textColor="@color/white"
+                android:textSize="22sp"/>
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
     <include layout="@layout/content_show_animal" />
 </android.support.design.widget.CoordinatorLayout>

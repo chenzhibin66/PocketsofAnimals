@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -75,10 +76,14 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
         final ImageView imageView = findViewById(R.id.show_animals);
         Glide.with(getApplicationContext()).load(R.drawable.loading2).into(zoomImageView);
         android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
+        if (toolbar!=null){
+            toolbar.setTitle("");
+        }
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.pause();
                 Intent intent1 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
                 startActivity(intent1);
                 finish();
@@ -96,17 +101,22 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
 
                 String access_token = "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873";
                 try {
-
-                    animal = getAnimalBean(path_imag,access_token);
-                    // 图像名称
-
+                    animal = getAnimalBean(path_imag, access_token);
+//                } catch (Exception e) {
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(getApplicationContext(),"没有检测到动物",Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//                try{
+//                    // 图像名称
                     File file1 = new File(path_imag);
-
                     //File file = new File(path);
                     Text2Audio text2Audio = new Text2Audio();
                     String text = animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍");
                     mp3_path = text2Audio.text2Audio(text,access_token,"1", RandomStringGenerator.getRandomStringByLength(60));
-
                     long dateTaken = System.currentTimeMillis();
 
                     String filename = DateFormat.format("yyyy-MM-dd kk.mm.ss", dateTaken).toString() + ".jpg";
@@ -130,24 +140,24 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
 //                        public void run() {
 //                            }
 //                    });
-//                    AlbumUtil albumUtil = new AlbumUtil();
-//                    albumUtil.setAlbuma(path_imag,path_mp3,path_new,
-//                            animal.getResult().get(0).getName(),
-//                            animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 } catch (Exception e) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            zoomImageView.setImageBitmap(R.drawable.find_no_animals);
-                        }
-                    });
+                    //Toast.makeText(getApplicationContext(),"没有检测到动物",Toast.LENGTH_SHORT).show();
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            zoomImageView.setImageResource(R.drawable.start);
+//                        }
+//                    });
                 }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         zoomImageView.setImageBitmap(bitmap1);
                         initMediaPlayer(mp3_path);
-//
 //                        floatingActionButton.setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View v) {
@@ -207,23 +217,21 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
         return cr.insert(IMAGE_URI, values);
     }
     private void initMediaPlayer(String paths){
-        File file =new File(paths);
         try {
             mediaPlayer.setDataSource(paths);
             mediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"文件不存在:"+file,Toast.LENGTH_SHORT).show();
         }
     }
 
 
     @Override
     public void onClick(View v) {
-                Intent intent2 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
+               /* Intent intent2 = new Intent(ShowAnimalsActivity.this,TakePhotoActivity.class);
                 startActivity(intent2);
-                finish();
-        };
+                finish();*/
+        }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar,menu);

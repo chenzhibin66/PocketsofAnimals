@@ -37,6 +37,9 @@ public class NullAnimal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_null_animal);
         android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
+        if (toolbar!=null){
+            toolbar.setTitle("");
+        }
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,10 +50,10 @@ public class NullAnimal extends AppCompatActivity {
             }
         });
     }
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar,menu);
         return true;
-    }
+    }*/
 
 }

@@ -13,7 +13,7 @@
     android:layout_height="match_parent"
     android:id="@+id/text"
     android:text="没有检测到动物"
-    android:background="@drawable/find_no_animals"/>
+    android:background="@drawable/find_no_animal"/>
     <!--<android.support.design.widget.FloatingActionButton-->
     <!--android:id="@+id/fab"-->
     <!--android:layout_width="wrap_content"-->
