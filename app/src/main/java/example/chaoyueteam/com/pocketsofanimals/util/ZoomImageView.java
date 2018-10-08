@@ -109,13 +109,15 @@ public class ZoomImageView extends android.support.v7.widget.AppCompatImageView 
         //全局的布局完成以后，会调用这个方法
         if(mOnce == false) {
             //控件的宽和高
-            if (getWidth()>500&&getHeight()>200) {
-                 width = getWidth() / 15;
-                 height = getHeight() / 15;
-            }else {
-                width = getWidth() / 15;
-                height = getHeight() / 15;
-            }
+//            if (getWidth()>100&&getHeight()>90) {
+//                 width = getWidth()/15;
+//                 height = getHeight()/15;
+//            }else {
+//                width = getWidth() / 1;
+//                height = getHeight() / 1;
+//            }
+            width = getWidth()/20;
+            height = getHeight()/20;
             //得到我们的图片，以及宽和高
             Drawable drawable = getDrawable();
             if(drawable == null) {

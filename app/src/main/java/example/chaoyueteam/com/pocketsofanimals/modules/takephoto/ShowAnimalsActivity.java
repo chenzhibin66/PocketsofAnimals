@@ -74,7 +74,7 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
 //        final FloatingActionButton floatingActionButton = findViewById(R.id.fb);
         final ZoomImageView zoomImageView = findViewById(R.id.show_animals);
         final ImageView imageView = findViewById(R.id.show_animals);
-        Glide.with(getApplicationContext()).load(R.drawable.loading).into(zoomImageView);
+        Glide.with(getApplicationContext()).load(R.drawable.loading2).into(zoomImageView);
         android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
         if (toolbar!=null){
             toolbar.setTitle("");
@@ -101,12 +101,18 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
 
                 String access_token = "24.69fa1f6175364ed5b13c0752a1b18b7a.2592000.1540636647.282335-14301873";
                 try {
-
-                    animal = getAnimalBean(path_imag,access_token);
-                    // 图像名称
-
+                    animal = getAnimalBean(path_imag, access_token);
+//                } catch (Exception e) {
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(getApplicationContext(),"没有检测到动物",Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//                try{
+//                    // 图像名称
                     File file1 = new File(path_imag);
-
                     //File file = new File(path);
                     Text2Audio text2Audio = new Text2Audio();
                     String text = animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍");
@@ -134,26 +140,24 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
 //                        public void run() {
 //                            }
 //                    });
-//                    AlbumUtil albumUtil = new AlbumUtil();
-//                    albumUtil.setAlbuma(path_imag,path_mp3,path_new,
-//                            animal.getResult().get(0).getName(),
-//                            animal.getResult().get(0).getBaike_info().substring(animal.getResult().get(0).getBaike_info().indexOf("description")).replace("description\"","介绍"));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 } catch (Exception e) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent intent1 = new Intent(ShowAnimalsActivity.this,NullAnimal.class);
-                            startActivity(intent1);
-                            finish();
-                        }
-                    });
+                    //Toast.makeText(getApplicationContext(),"没有检测到动物",Toast.LENGTH_SHORT).show();
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            zoomImageView.setImageResource(R.drawable.start);
+//                        }
+//                    });
                 }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         zoomImageView.setImageBitmap(bitmap1);
                         initMediaPlayer(mp3_path);
-//
 //                        floatingActionButton.setOnClickListener(new View.OnClickListener() {
 //                            @Override
 //                            public void onClick(View v) {
@@ -213,13 +217,11 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
         return cr.insert(IMAGE_URI, values);
     }
     private void initMediaPlayer(String paths){
-        File file =new File(paths);
         try {
             mediaPlayer.setDataSource(paths);
             mediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"文件不存在:"+file,Toast.LENGTH_SHORT).show();
         }
     }
 
