@@ -37,7 +37,7 @@
         <!-- 填写自己的 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="SfPUaG5XWWImOYVGz2zPGWEZX4vn3nDo" />
+            android:value="8Hil3jAmo1xhU2fqjWgxbm4hUG4l2Se2" />
         <activity
             android:name=".modules.WelcomeActivity"
             android:label="@string/app_name">
