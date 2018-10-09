@@ -59,8 +59,6 @@
         <activity android:name=".modules.me.NickActtivity" />
         <activity android:name=".modules.me.SignatureActivity" />
         <activity android:name=".modules.me.AlterPasswordActivity" />
-        <activity android:name=".modules.takephoto.NullAnimal"/>
-
         <activity android:name=".modules.discover.AnimalActivity"></activity>
     </application>
 

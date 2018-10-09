@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <android.support.constraint.ConstraintLayout
     tools:showIn="@layout/activity_null_animal"
-    tools:context=".modules.takephoto.NullAnimal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
