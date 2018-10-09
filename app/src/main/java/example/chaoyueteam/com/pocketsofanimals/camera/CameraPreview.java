@@ -231,11 +231,12 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         if (isTransverse) {
             if (getContext().getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
                 camera.setDisplayOrientation(90);
-                p.setRotation(90);
+                p.setRotation(0);
             }
         } else {
             if (getContext().getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
                 camera.setDisplayOrientation(90);
+
             }
         }
     }

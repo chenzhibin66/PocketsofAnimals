@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modules.takephoto.ShowAnimalsActivity">
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,15 +17,79 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:navigationIcon="@drawable/ic_left_back"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="识别结果"
                 android:textColor="@color/white"
-                android:textSize="22sp"/>
+                android:textSize="22sp"
+                android:visibility="visible" />
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
-    <include layout="@layout/content_show_animal" />
+    <!--<include layout="@layout/content_show_animal" />-->
+    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/result_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".modules.takephoto.NullAnimal"
+        tools:showIn="@layout/activity_null_animal">
+
+        <example.chaoyueteam.com.pocketsofanimals.util.ZoomImageView
+            android:id="@+id/show_animals"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp">
+            <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="500dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginLeft="330dp"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:id="@+id/fb"-->
+            <!--app:fabSize="mini"-->
+            <!--android:src="@drawable/start"-->
+            <!--android:backgroundTint="@color/white"-->
+            <!--/>-->
+        </FrameLayout>
+    </android.support.v4.widget.DrawerLayout>
+
+    <RelativeLayout
+        android:id="@+id/no_result_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/find_no_animals"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/find_no_animal" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/find_no_animals"
+            android:layout_centerInParent="true"
+            android:padding="10dp"
+            android:text="心塞塞，没有识别到动物啊..."
+            android:textSize="16dp" />
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
