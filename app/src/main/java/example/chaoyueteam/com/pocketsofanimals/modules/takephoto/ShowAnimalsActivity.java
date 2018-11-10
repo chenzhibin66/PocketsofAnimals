@@ -52,7 +52,6 @@ public class ShowAnimalsActivity extends AppCompatActivity implements View.OnCli
     @BindView(R.id.no_result_layout)
     RelativeLayout noResultLayout;
     private MediaPlayer mediaPlayer = new MediaPlayer();
-    final String access_token = "24.0a2011fa331e530055d3f0fe17b3008f.2592000.1543916052.282335-14301873";
 
     Animal animal, animaldemo;
     AlbumUtil albumUtil;
